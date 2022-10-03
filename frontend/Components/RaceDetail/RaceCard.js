@@ -29,7 +29,7 @@ const horseList = [
         color: 'Yellow green',
         characteris: 'Excited',
         running_type: 'Front Runner',
-        win_rates: '17.65% - 35.29%'
+        win_rates: '17.65% - 35.29%',
       },
     ],
   },
@@ -49,7 +49,7 @@ const horseList = [
         color: 'Yellow green',
         characteris: 'Excited',
         running_type: 'Front Runner',
-        win_rates: '17.65% - 35.29%'
+        win_rates: '17.65% - 35.29%',
       },
     ],
   },
@@ -69,7 +69,7 @@ const horseList = [
         color: 'Yellow green',
         characteris: 'Excited',
         running_type: 'Front Runner',
-        win_rates: '17.65% - 35.29%'
+        win_rates: '17.65% - 35.29%',
       },
     ],
   },
@@ -89,7 +89,7 @@ const horseList = [
         color: 'Yellow green',
         characteris: 'Excited',
         running_type: 'Front Runner',
-        win_rates: '17.65% - 35.29%'
+        win_rates: '17.65% - 35.29%',
       },
     ],
   },
@@ -109,7 +109,7 @@ const horseList = [
         color: 'Yellow green',
         characteris: 'Excited',
         running_type: 'Front Runner',
-        win_rates: '17.65% - 35.29%'
+        win_rates: '17.65% - 35.29%',
       },
     ],
   },
@@ -129,7 +129,7 @@ const horseList = [
         color: 'Yellow green',
         characteris: 'Excited',
         running_type: 'Front Runner',
-        win_rates: '17.65% - 35.29%'
+        win_rates: '17.65% - 35.29%',
       },
     ],
   },
@@ -149,7 +149,7 @@ const horseList = [
         color: 'Yellow green',
         characteris: 'Excited',
         running_type: 'Front Runner',
-        win_rates: '17.65% - 35.29%'
+        win_rates: '17.65% - 35.29%',
       },
     ],
   },
@@ -169,7 +169,7 @@ const horseList = [
         color: 'Yellow green',
         characteris: 'Excited',
         running_type: 'Front Runner',
-        win_rates: '17.65% - 35.29%'
+        win_rates: '17.65% - 35.29%',
       },
     ],
   },
@@ -189,7 +189,7 @@ const horseList = [
         color: 'Yellow green',
         characteris: 'Excited',
         running_type: 'Front Runner',
-        win_rates: '17.65% - 35.29%'
+        win_rates: '17.65% - 35.29%',
       },
     ],
   },
@@ -209,7 +209,7 @@ const horseList = [
         color: 'Yellow green',
         characteris: 'Excited',
         running_type: 'Front Runner',
-        win_rates: '17.65% - 35.29%'
+        win_rates: '17.65% - 35.29%',
       },
     ],
   },
@@ -229,7 +229,7 @@ const horseList = [
         color: 'Yellow green',
         characteris: 'Excited',
         running_type: 'Front Runner',
-        win_rates: '17.65% - 35.29%'
+        win_rates: '17.65% - 35.29%',
       },
     ],
   },
@@ -249,7 +249,7 @@ const horseList = [
         color: 'Yellow green',
         characteris: 'Excited',
         running_type: 'Front Runner',
-        win_rates: '17.65% - 35.29%'
+        win_rates: '17.65% - 35.29%',
       },
     ],
   },
@@ -514,21 +514,95 @@ function RaceCard() {
                               <Text style={styles.txtDescription}>
                                 {e.blood}
                               </Text>
-                              <Text style={[styles.txtTitle, {marginTop: 10}]}>Gender :</Text>
+                              <Text style={[styles.txtTitle, {marginTop: 10}]}>
+                                Gender :
+                              </Text>
                               <Text style={styles.txtDescription}>
                                 {e.gender}
                               </Text>
-                              <Text style={[styles.txtTitle, {marginTop: 10}]}>Type :</Text>
+                              <Text style={[styles.txtTitle, {marginTop: 10}]}>
+                                Type :
+                              </Text>
                               <Text style={styles.txtDescription}>
                                 {e.type}
                               </Text>
-                              <Text style={[styles.txtTitle, {marginTop: 10}]}>Color :</Text>
+                              <Text style={[styles.txtTitle, {marginTop: 10}]}>
+                                Color :
+                              </Text>
                               <Text style={styles.txtDescription}>
                                 {e.color}
                               </Text>
                             </View>
                           </View>
-                          <View style={styles.HorseTopLeft}></View>
+                          <View style={styles.HorseTopLeft}>
+                            <Image
+                              source={require('../Image/horse-detail/horse1.png')}
+                            />
+                          </View>
+                        </View>
+                        <View style={styles.horseTopBottom}>
+                          <View style={styles.txtTop}>
+                            <Text style={[styles.txtTitle, {}]}>
+                              Characteris :
+                            </Text>
+                            <Text style={styles.txtDescription}>
+                              {e.characteris}
+                            </Text>
+                          </View>
+                          <View style={styles.txtTop}>
+                            <Text style={[styles.txtTitle, {}]}>
+                              Running type :
+                            </Text>
+                            <Text style={styles.txtDescription}>
+                              {e.running_type}
+                            </Text>
+                          </View>
+                          <View style={styles.txtTop}>
+                            <Text style={[styles.txtTitle, {}]}>
+                              Win rates :
+                            </Text>
+                            <Text style={styles.txtDescription}>
+                              {e.win_rates}
+                            </Text>
+                          </View>
+                        </View>
+                        <View style={styles.horseTopBottom}>
+                          <LinearGradient
+                            start={{x: 0.0, y: 0.0}}
+                            end={{x: 0.0, y: 1.0}}
+                            useAngle={true}
+                            angle={180}
+                            locations={[0.0, 1.0]}
+                            colors={['#262626', '#0D0D0D']}
+                            style={styles.rateMedium}>
+                            <Text style={styles.txtRate}>Medium distance</Text>
+                            <Image source={require('../Image/star.png')} />
+                          </LinearGradient>
+                          <LinearGradient
+                            start={{x: 0.0, y: 0.0}}
+                            end={{x: 0.0, y: 1.0}}
+                            useAngle={true}
+                            angle={180}
+                            locations={[0.0, 1.0]}
+                            colors={['#262626', '#0D0D0D']}
+                            style={styles.rateMedium}>
+                            <Text style={styles.txtRate}>
+                              Dirt{'\n'}suitability
+                            </Text>
+                            <Image source={require('../Image/star1.png')} />
+                          </LinearGradient>
+                        </View>
+                        <View style={styles.HorseMiddle}>
+                          <View style={styles.ratings}>
+                            <View style={styles.dateTime}>
+                              <Text style={styles.txtDate}>2022-06-18</Text>
+                              <View style={styles.places}>
+                                <Image source={require('../Image/crown.png')} />
+                                <Text style={styles.stt}>1</Text>
+                                <Text style={styles.txtRating}>/12</Text>
+                              </View>
+                            </View>
+                          </View>
                         </View>
                       </LinearGradient>
                     ))
@@ -545,6 +619,96 @@ function RaceCard() {
 export default RaceCard;
 
 const styles = StyleSheet.create({
+  txtRating: {
+    fontFamily: 'Inter',
+    fontStyle: 'normal',
+    fontWeight: '700',
+    fontSize: 14,
+    lineHeight: 24,
+    textAlign: 'right',
+    letterSpacing: 0.02,
+    color: '#fff'
+  },
+  places: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 0,
+    marginRight: 10,
+    width: 38,
+    height: 29,
+  },
+  txtDate: {
+    fontFamily: 'Inter',
+    fontSize: 14,
+    fontStyle: 'normal',
+    fontWeight: '500',
+    lineHeight: 24,
+    letterSpacing: 0.02,
+    color: '#C5C5C5',
+  },
+  dateTime: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+    padding: 0,
+    width: 358,
+    height: 29,
+  },
+  ratings: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    padding: (0, 8),
+    width: 371,
+    height: 65,
+  },
+  HorseMiddle: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    padding: (8, 0),
+    width: 374,
+    height: 243,
+    backgroundColor: 'rgba(0, 20, 30, 0.5)',
+    borderRadius: 8,
+    marginTop: 8,
+    borderWidth: 1,
+    borderColor: '#D0D0D0',
+  },
+  txtRate: {
+    fontFamily: 'Inter',
+    fontStyle: 'normal',
+    fontWeight: '600',
+    fontSize: 14,
+    lineHeight: 16,
+    color: '#fff',
+    opacity: 0.75,
+    width: 70,
+    height: 32,
+  },
+  rateMedium: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: (4, 8),
+    width: 183,
+    height: 40,
+    borderRadius: 8,
+  },
+  horseTopBottom: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    padding: 0,
+    width: 374,
+    height: 40,
+    marginTop: 18,
+  },
   txtDescription: {
     fontFamily: 'Inter',
     fontStyle: 'normal',
@@ -569,7 +733,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'flex-start',
     padding: 0,
-    width: 89,
+    width: 120,
     height: 40,
   },
   HorseTopLeft: {
