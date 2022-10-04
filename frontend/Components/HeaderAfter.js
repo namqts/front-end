@@ -4,22 +4,9 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import Address from './Address';
 
-export default function Header() {
+export default function HeaderAfter() {
   return (
     <View style={styles.header}>
-      <LinearGradient
-        start={{ x: 0.0, y: 0.0 }}
-        end={{ x: 0.0, y: 1.0 }}
-        useAngle={true}
-        angle={180}
-        locations={[0.0, 0.6279, 0.6868, 1.0]}
-        angleCenter={{ x: 0.5, y: 0.5 }}
-        colors={['#616B80', '#3A4459', '#2C3649', '#2B354A']}
-        style={styles.frameLeft}>
-        <View >
-          <Image source={require('./Image/back.png')}/>
-        </View>
-      </LinearGradient>
       <LinearGradient
         start={{ x: 0.0, y: 0.0 }}
         end={{ x: 0.0, y: 1.0 }}
@@ -38,7 +25,7 @@ export default function Header() {
             style={styles.headerText}
             ellipsizeMode={'middle'}
             numberOfLines={1}>
-            10,000
+            10,000sssss
           </Text>
         </View>
       </LinearGradient>
@@ -64,10 +51,11 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
   },
   viewContainer: {
-    width: 283,
-    height: 48,
+    width: 346,
+    height: 52,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
     shadowRadius: 2,
@@ -84,7 +72,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     display: 'flex',
-    marginLeft: 8
   },
   headerText: {
     width: 146,
@@ -124,18 +111,5 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 50,
     borderBottomLeftRadius: 50,
     marginLeft: 10
-  },
-  frameLeft: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: (6, 16, 6, 6),
-    width: 55,
-    height: 48,
-    shadowColor: 'inset 0px 0px 2px rgba(0, 0, 0, 0.75)',
-    borderTopRightRadius: 50,
-    borderBottomRightRadius: 50,
-    borderColor: '#6E6E6E',
-    borderWidth: 0.5
   }
 });

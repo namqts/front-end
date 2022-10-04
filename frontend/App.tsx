@@ -1,96 +1,117 @@
-import React from "react";
-import { useMoralis } from "react-moralis";
-import { useWalletConnect } from "./WalletConnect";
+import React from 'react';
+import {useMoralis} from 'react-moralis';
+import {useWalletConnect} from './WalletConnect';
 import {
   NavigationContainer,
   getFocusedRouteNameFromRoute,
-  DefaultTheme
-} from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import { LogBox } from "react-native";
+  DefaultTheme,
+} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {LogBox} from 'react-native';
 
-import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-import CryptoAuth from "./Components/CryptoAuth";
-import RecentTransactions from "./Components/RecentTransactions/RecentTransactions";
-import Assets from "./Components/Assets/Assets";
-import Transfer from "./Components/RaceDetail/Transfer";
-import Profile from "./Components/Profile/Profile";
-import Header from "./Components/Header";
-import NFTAssets from "./Components/NFT/NFTAssets";
-
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
+import CryptoAuth from './Components/CryptoAuth';
+import RecentTransactions from './Components/RecentTransactions/RecentTransactions';
+import Assets from './Components/Assets/Assets';
+import Transfer from './Components/RaceDetail/Transfer';
+import Profile from './Components/Profile/Profile';
+import Header from './Components/Header';
+import HeaderAfter from './Components/HeaderAfter';
+import NFTAssets from './Components/NFT/NFTAssets';
+import HorseDetail from './Components/RaceDetail/HorseDetail';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {
   faCreditCard,
   faCoins,
   faUser,
   faPaperPlane,
   faRocket,
-} from "@fortawesome/free-solid-svg-icons";
+} from '@fortawesome/free-solid-svg-icons';
 
-import Moralis from "moralis/types";
+import Moralis from 'moralis/types';
 
 LogBox.ignoreAllLogs();
 
 // const Activecolor =
 function Home(): JSX.Element {
   return (
-    <Tab.Navigator
-      shifting={false}
-      activeColor="#315399"
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: true,
+      }}
+      // shifting={false}
+      // activeColor="#315399"
       // inactiveColor="#3e2465"
-      barStyle={{ backgroundColor: "white" }}>
-      <Tab.Screen
+      // barStyle={{backgroundColor: 'white'}}
+    >
+      <Stack.Screen
         name="Assets"
-        options={{
-          tabBarLabel: "Assets",
-          tabBarIcon: ({ color, focused }) => {
-            return <FontAwesomeIcon icon={faCoins} color={color} size={20} />;
-          },
-        }}
+        options={{header: props => <HeaderAfter />}}
+        // options={{
+        //   tabBarLabel: 'Assets',
+        //   tabBarIcon: ({color, focused}) => {
+        //     return <FontAwesomeIcon icon={faCoins} color={color} size={20} />;
+        //   },
+        // }}
         component={Assets}
       />
-      <Tab.Screen
+      <Stack.Screen
         name="Transactions"
-        options={{
-          tabBarLabel: "Transactions",
-          tabBarIcon: ({ color }) => (
-            <FontAwesomeIcon icon={faCreditCard} color={color} size={20} />
-          ),
-        }}
+        options={{header: props => <Header />}}
+        // options={{
+        //   tabBarLabel: 'Transactions',
+        //   tabBarIcon: ({color}) => (
+        //     <FontAwesomeIcon icon={faCreditCard} color={color} size={20} />
+        //   ),
+        // }}
         component={RecentTransactions}
       />
-      <Tab.Screen
+      <Stack.Screen
         name="NFTAssets"
-        options={{
-          tabBarLabel: "NFTAssets",
-          tabBarIcon: ({ color, focused }) => {
-            return <FontAwesomeIcon icon={faRocket} color={color} size={20} />;
-          },
-        }}
+        options={{header: props => <Header />}}
+        // options={{
+        //   tabBarLabel: 'NFTAssets',
+        //   tabBarIcon: ({color, focused}) => {
+        //     return <FontAwesomeIcon icon={faRocket} color={color} size={20} />;
+        //   },
+        // }}
         component={NFTAssets}
       />
-      <Tab.Screen
+      <Stack.Screen
         name="Transfer"
-        options={{
-          tabBarLabel: "Transfer",
-          tabBarIcon: ({ color }) => (
-            <FontAwesomeIcon icon={faPaperPlane} color={color} size={20} />
-          ),
-        }}
+        options={{header: props => <Header />}}
+        // options={{
+        //   tabBarLabel: 'Transfer',
+        //   tabBarIcon: ({color}) => (
+        //     <FontAwesomeIcon icon={faPaperPlane} color={color} size={20} />
+        //   ),
+        // }}
         component={Transfer}
       />
 
-      <Tab.Screen
+      <Stack.Screen
         name="Profile"
-        options={{
-          tabBarLabel: "Profile",
-          tabBarIcon: ({ color }) => (
-            <FontAwesomeIcon icon={faUser} color={color} size={20} />
-          ),
-        }}
+        options={{header: props => <Header />}}
+        // options={{
+        //   tabBarLabel: 'Profile',
+        //   tabBarIcon: ({color}) => (
+        //     <FontAwesomeIcon icon={faUser} color={color} size={20} />
+        //   ),
+        // }}
         component={Profile}
       />
-    </Tab.Navigator>
+      <Stack.Screen
+        name="HorseDetail"
+        options={{header: props => <Header />}}
+        // options={{
+        //   tabBarLabel: 'HorseDetail',
+        //   tabBarIcon: ({color}) => (
+        //     <FontAwesomeIcon icon={faUser} color={color} size={20} />
+        //   ),
+        // }}
+        component={HorseDetail}
+      />
+    </Stack.Navigator>
   );
 }
 
@@ -100,17 +121,19 @@ function getHeaderTitle(route) {
   // If the focused route is not found, we need to assume it's the initial screen
   // This can happen during if there hasn't been any navigation inside the screen
   // In our case, it's "Feed" as that's the first screen inside the navigator
-  const routeName = getFocusedRouteNameFromRoute(route) ?? "Feed";
+  const routeName = getFocusedRouteNameFromRoute(route) ?? 'Feed';
 
   switch (routeName) {
-    case "Assets":
-      return "Assets";
-    case "Transfer":
-      return "Transfer";
-    case "Transactions":
-      return "Transactions";
-    case "Profile":
-      return "Profile";
+    case 'Assets':
+      return 'Assets';
+    case 'Transfer':
+      return 'Transfer';
+    case 'Transactions':
+      return 'Transactions';
+    case 'Profile':
+      return 'Profile';
+    case 'HorseDetail':
+      return 'HorseDetail';
   }
 }
 
@@ -136,7 +159,11 @@ function App(): JSX.Element {
 
   return (
     <NavigationContainer theme={MyTheme}>
-      <Stack.Navigator initialRouteName="Auth">
+      <Stack.Navigator
+        initialRouteName="Auth"
+        screenOptions={{
+          headerShown: false,
+        }}>
         {/* Auth Navigator: Include Login and Signup */}
         {/* <Stack.Screen
           name="Auth"
@@ -148,7 +175,7 @@ function App(): JSX.Element {
           name="DrawerNavigationRoutes"
           component={Home}
           // Hiding header for Navigation Drawer
-          options={{ headerTitle: (props) => <Header /> }}
+          // options={{headerTitle: props => <Header />}}
           // options={({ route }) => ({
           //   headerTitle: getHeaderTitle(route),
           // })}

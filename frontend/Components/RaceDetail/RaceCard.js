@@ -1,5 +1,5 @@
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
   View,
@@ -7,10 +7,18 @@ import {
   Text,
   Button,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {faCaretDown, faCaretUp} from '@fortawesome/free-solid-svg-icons';
-import {Center, NativeBaseProvider, PresenceTransition} from 'native-base';
+import {
+  Center,
+  Divider,
+  NativeBaseProvider,
+  PresenceTransition,
+} from 'native-base';
+import {LinearTextGradient} from 'react-native-text-gradient';
+import {useNavigation} from '@react-navigation/native';
 
 const horseList = [
   {
@@ -23,6 +31,7 @@ const horseList = [
     background: 'rgba(0, 21, 30, 0.5)',
     detail: [
       {
+        id: 1,
         blood: 'Roberto',
         gender: 'Male',
         type: 'Wind',
@@ -30,6 +39,18 @@ const horseList = [
         characteris: 'Excited',
         running_type: 'Front Runner',
         win_rates: '17.65% - 35.29%',
+        speed: 'A',
+        processSpeed: 0.2,
+        muscle: 'S',
+        processMuscle: 0.8,
+        stamina: 'AAA',
+        processStamina: 0.6,
+        accuracy: 'AA',
+        processAccuracy: 0.4,
+        spirit: 'SS',
+        processSpirit: 1,
+        IQ: 'A',
+        processIQ: 0.2
       },
     ],
   },
@@ -43,6 +64,7 @@ const horseList = [
     background: 'rgba(0, 21, 30, 0.75)',
     detail: [
       {
+        id: 2,
         blood: 'Roberto',
         gender: 'Male',
         type: 'Wind',
@@ -50,6 +72,18 @@ const horseList = [
         characteris: 'Excited',
         running_type: 'Front Runner',
         win_rates: '17.65% - 35.29%',
+        speed: 'AA',
+        processSpeed: 0.4,
+        muscle: 'S',
+        processMuscle: 0.8,
+        stamina: 'AAA',
+        processStamina: 0.6,
+        accuracy: 'AA',
+        processAccuracy: 0.4,
+        spirit: 'S',
+        processSpirit: 0.8,
+        IQ: 'A',
+        processIQ: 0.2
       },
     ],
   },
@@ -63,6 +97,7 @@ const horseList = [
     background: 'rgba(0, 21, 30, 0.5)',
     detail: [
       {
+        id: 3,
         blood: 'Roberto',
         gender: 'Male',
         type: 'Wind',
@@ -70,6 +105,18 @@ const horseList = [
         characteris: 'Excited',
         running_type: 'Front Runner',
         win_rates: '17.65% - 35.29%',
+        speed: 'A',
+        processSpeed: 0.2,
+        muscle: 'SS',
+        processMuscle: 1,
+        stamina: 'AA',
+        processStamina: 0.4,
+        accuracy: 'AA',
+        processAccuracy: 0.4,
+        spirit: 'SS',
+        processSpirit: 1,
+        IQ: 'A',
+        processIQ: 0.2
       },
     ],
   },
@@ -83,6 +130,7 @@ const horseList = [
     background: 'rgba(0, 21, 30, 0.75)',
     detail: [
       {
+        id: 4,
         blood: 'Roberto',
         gender: 'Male',
         type: 'Wind',
@@ -90,6 +138,18 @@ const horseList = [
         characteris: 'Excited',
         running_type: 'Front Runner',
         win_rates: '17.65% - 35.29%',
+        speed: 'A',
+        processSpeed: 0.2,
+        muscle: 'S',
+        processMuscle: 0.8,
+        stamina: 'AAA',
+        processStamina: 0.6,
+        accuracy: 'AA',
+        processAccuracy: 0.4,
+        spirit: 'SS',
+        processSpirit: 1,
+        IQ: 'S',
+        processIQ: 0.8
       },
     ],
   },
@@ -103,6 +163,7 @@ const horseList = [
     background: 'rgba(0, 21, 30, 0.5)',
     detail: [
       {
+        id: 5,
         blood: 'Roberto',
         gender: 'Male',
         type: 'Wind',
@@ -110,6 +171,18 @@ const horseList = [
         characteris: 'Excited',
         running_type: 'Front Runner',
         win_rates: '17.65% - 35.29%',
+        speed: 'S',
+        processSpeed: 0.8,
+        muscle: 'S',
+        processMuscle: 0.8,
+        stamina: 'S',
+        processStamina: 0.8,
+        accuracy: 'AA',
+        processAccuracy: 0.4,
+        spirit: 'SS',
+        processSpirit: 1,
+        IQ: 'A',
+        processIQ: 0.2
       },
     ],
   },
@@ -123,6 +196,7 @@ const horseList = [
     background: 'rgba(0, 21, 30, 0.75)',
     detail: [
       {
+        id: 6,
         blood: 'Roberto',
         gender: 'Male',
         type: 'Wind',
@@ -130,6 +204,18 @@ const horseList = [
         characteris: 'Excited',
         running_type: 'Front Runner',
         win_rates: '17.65% - 35.29%',
+        speed: 'A',
+        processSpeed: 0.2,
+        muscle: 'S',
+        processMuscle: 0.8,
+        stamina: 'AAA',
+        processStamina: 0.6,
+        accuracy: 'AA',
+        processAccuracy: 0.4,
+        spirit: 'SS',
+        processSpirit: 1,
+        IQ: 'A',
+        processIQ: 0.2
       },
     ],
   },
@@ -143,6 +229,7 @@ const horseList = [
     background: 'rgba(0, 21, 30, 0.5)',
     detail: [
       {
+        id: 7,
         blood: 'Roberto',
         gender: 'Male',
         type: 'Wind',
@@ -150,6 +237,18 @@ const horseList = [
         characteris: 'Excited',
         running_type: 'Front Runner',
         win_rates: '17.65% - 35.29%',
+        speed: 'A',
+        processSpeed: 0.2,
+        muscle: 'S',
+        processMuscle: 0.8,
+        stamina: 'AAA',
+        processStamina: 0.6,
+        accuracy: 'AA',
+        processAccuracy: 0.4,
+        spirit: 'SS',
+        processSpirit: 1,
+        IQ: 'A',
+        processIQ: 0.2
       },
     ],
   },
@@ -163,6 +262,7 @@ const horseList = [
     background: 'rgba(0, 21, 30, 0.75)',
     detail: [
       {
+        id: 8,
         blood: 'Roberto',
         gender: 'Male',
         type: 'Wind',
@@ -170,6 +270,18 @@ const horseList = [
         characteris: 'Excited',
         running_type: 'Front Runner',
         win_rates: '17.65% - 35.29%',
+        speed: 'A',
+        processSpeed: 0.2,
+        muscle: 'S',
+        processMuscle: 0.8,
+        stamina: 'AAA',
+        processStamina: 0.6,
+        accuracy: 'AA',
+        processAccuracy: 0.4,
+        spirit: 'SS',
+        processSpirit: 1,
+        IQ: 'A',
+        processIQ: 0.2
       },
     ],
   },
@@ -183,6 +295,7 @@ const horseList = [
     background: 'rgba(0, 21, 30, 0.5)',
     detail: [
       {
+        id: 9,
         blood: 'Roberto',
         gender: 'Male',
         type: 'Wind',
@@ -190,6 +303,18 @@ const horseList = [
         characteris: 'Excited',
         running_type: 'Front Runner',
         win_rates: '17.65% - 35.29%',
+        speed: 'A',
+        processSpeed: 0.2,
+        muscle: 'S',
+        processMuscle: 0.8,
+        stamina: 'S',
+        processStamina: 0.8,
+        accuracy: 'AA',
+        processAccuracy: 0.4,
+        spirit: 'SS',
+        processSpirit: 1,
+        IQ: 'A',
+        processIQ: 0.2
       },
     ],
   },
@@ -203,6 +328,7 @@ const horseList = [
     background: 'rgba(0, 21, 30, 0.75)',
     detail: [
       {
+        id: 10,
         blood: 'Roberto',
         gender: 'Male',
         type: 'Wind',
@@ -210,6 +336,18 @@ const horseList = [
         characteris: 'Excited',
         running_type: 'Front Runner',
         win_rates: '17.65% - 35.29%',
+        speed: 'A',
+        processSpeed: 0.2,
+        muscle: 'S',
+        processMuscle: 0.8,
+        stamina: 'AAA',
+        processStamina: 0.6,
+        accuracy: 'AA',
+        processAccuracy: 0.4,
+        spirit: 'SS',
+        processSpirit: 1,
+        IQ: 'A',
+        processIQ: 0.2
       },
     ],
   },
@@ -223,6 +361,7 @@ const horseList = [
     background: 'rgba(0, 21, 30, 0.5)',
     detail: [
       {
+        id: 11,
         blood: 'Roberto',
         gender: 'Male',
         type: 'Wind',
@@ -230,6 +369,18 @@ const horseList = [
         characteris: 'Excited',
         running_type: 'Front Runner',
         win_rates: '17.65% - 35.29%',
+        speed: 'A',
+        processSpeed: 0.2,
+        muscle: 'S',
+        processMuscle: 0.8,
+        stamina: 'AAA',
+        processStamina: 0.6,
+        accuracy: 'AA',
+        processAccuracy: 0.4,
+        spirit: 'SS',
+        processSpirit: 1,
+        IQ: 'A',
+        processIQ: 0.2
       },
     ],
   },
@@ -243,6 +394,7 @@ const horseList = [
     background: 'rgba(0, 21, 30, 0.75)',
     detail: [
       {
+        id: 12,
         blood: 'Roberto',
         gender: 'Male',
         type: 'Wind',
@@ -250,6 +402,18 @@ const horseList = [
         characteris: 'Excited',
         running_type: 'Front Runner',
         win_rates: '17.65% - 35.29%',
+        speed: 'A',
+        processSpeed: 0.2,
+        muscle: 'S',
+        processMuscle: 0.8,
+        stamina: 'AAA',
+        processStamina: 0.6,
+        accuracy: 'S',
+        processAccuracy: 0.8,
+        spirit: 'SS',
+        processSpirit: 1,
+        IQ: 'A',
+        processIQ: 0.2
       },
     ],
   },
@@ -261,12 +425,14 @@ function RaceCard() {
     setIsOpen(isOpen);
   };
 
+  const navigation = useNavigation();
+
   return (
     <NativeBaseProvider>
       <View
         style={[
           styles.ContainerTable,
-          setIsOpenId ? {height: 1134} : {height: 534},
+          isOpen ? {height: 1149} : {height: 534},
         ]}>
         <View style={styles.Placeholder}>
           <View style={styles.header}>
@@ -598,11 +764,220 @@ function RaceCard() {
                               <Text style={styles.txtDate}>2022-06-18</Text>
                               <View style={styles.places}>
                                 <Image source={require('../Image/crown.png')} />
-                                <Text style={styles.stt}>1</Text>
+                                <LinearTextGradient
+                                  start={{x: 0.0, y: 0.0}}
+                                  end={{x: 0.0, y: 1.0}}
+                                  useAngle={true}
+                                  angle={360}
+                                  locations={[0.0, 44.79, 47.92, 1.0]}
+                                  colors={[
+                                    '#EDC53A',
+                                    '#B26F29',
+                                    '#FFF873',
+                                    '#DD9A09',
+                                  ]}
+                                  style={styles.stt}>
+                                  <Text>1</Text>
+                                </LinearTextGradient>
                                 <Text style={styles.txtRating}>/12</Text>
                               </View>
                             </View>
+                            <View style={styles.containerTitle}>
+                              <View style={styles.race}>
+                                <Image
+                                  source={require('../Image/List-round/round3.png')}
+                                  style={{
+                                    width: 32,
+                                    height: 32,
+                                    marginRight: 8,
+                                  }}
+                                />
+                                <Text style={styles.title}>
+                                  Karitekisuto race
+                                </Text>
+                              </View>
+                              <View style={styles.grass}>
+                                <Text style={styles.title}>Grass 2400m</Text>
+                              </View>
+                            </View>
                           </View>
+                          <Divider style={{marginTop: 14}} />
+                          <View style={styles.ratings}>
+                            <View style={styles.dateTime}>
+                              <Text style={styles.txtDate}>2022-06-18</Text>
+                              <View style={styles.places}>
+                                <Image source={require('../Image/crown.png')} />
+                                <LinearTextGradient
+                                  start={{x: 0.0, y: 0.0}}
+                                  end={{x: 0.0, y: 1.0}}
+                                  useAngle={true}
+                                  angle={180}
+                                  locations={[0.0, 45.83, 53.13, 53.65, 1.0]}
+                                  colors={[
+                                    '#FD6F01',
+                                    '#84441F',
+                                    '#AAAEB6',
+                                    '#84441F',
+                                    '#CA8453',
+                                  ]}
+                                  style={styles.stt}>
+                                  <Text>3</Text>
+                                </LinearTextGradient>
+                                <Text style={styles.txtRating}>/12</Text>
+                              </View>
+                            </View>
+                            <View style={styles.containerTitle}>
+                              <View style={styles.race}>
+                                <Image
+                                  source={require('../Image/List-round/round7.png')}
+                                  style={{
+                                    width: 32,
+                                    height: 32,
+                                    marginRight: 8,
+                                  }}
+                                />
+                                <Text style={styles.title}>
+                                  Karitekisuto race
+                                </Text>
+                              </View>
+                              <View style={styles.grass}>
+                                <Text style={styles.title}>Grass 2400m</Text>
+                              </View>
+                            </View>
+                          </View>
+                          <Divider style={{marginTop: 14}} />
+                          <View style={styles.ratings}>
+                            <View style={styles.dateTime}>
+                              <Text style={styles.txtDate}>2022-06-18</Text>
+                              <View style={styles.places}>
+                                <Image source={require('../Image/crown.png')} />
+                                <LinearTextGradient
+                                  start={{x: 0.0, y: 0.0}}
+                                  end={{x: 0.0, y: 1.0}}
+                                  useAngle={true}
+                                  angle={90}
+                                  locations={[0.0, 45.83, 53.13, 53.65, 1.0]}
+                                  colors={[
+                                    '#525967',
+                                    '#AAAEB6',
+                                    '#AAAEB6',
+                                    '#AAAEB6',
+                                    '#585F6C',
+                                  ]}
+                                  style={styles.stt}>
+                                  <Text>6</Text>
+                                </LinearTextGradient>
+                                <Text style={styles.txtRating}>/12</Text>
+                              </View>
+                            </View>
+                            <View style={styles.containerTitle}>
+                              <View style={styles.race}>
+                                <Image
+                                  source={require('../Image/List-round/round11.png')}
+                                  style={{
+                                    width: 32,
+                                    height: 32,
+                                    marginRight: 8,
+                                  }}
+                                />
+                                <Text style={styles.title}>
+                                  Karitekisuto race
+                                </Text>
+                              </View>
+                              <View style={styles.grass}>
+                                <Text style={styles.title}>Grass 2400m</Text>
+                              </View>
+                            </View>
+                          </View>
+                        </View>
+                        <View style={styles.horseBottom}>
+                          <View style={[styles.button, {marginRight: 6}]}>
+                            <LinearGradient
+                              start={{x: 0.0, y: 0.0}}
+                              end={{x: 0.0, y: 1.0}}
+                              useAngle={true}
+                              angle={90}
+                              locations={[0.0, 0.22, 0.51, 0.78, 1.0]}
+                              colors={[
+                                '#3cb0ff',
+                                '#3eb1ff',
+                                '#80ccff',
+                                '#3eb1ff',
+                                '#3cb0ff',
+                              ]}
+                              style={[
+                                styles.btnHorse,
+                                {borderColor: '#3C7CDD', borderWidth: 0.5},
+                              ]}>
+                              <LinearTextGradient
+                                start={{x: 0.0, y: 0.0}}
+                                end={{x: 0.0, y: 1.0}}
+                                useAngle={true}
+                                angle={360}
+                                locations={[
+                                  -0.0937,
+                                  0.0259,
+                                  0.2196,
+                                  0.8918,
+                                  1.0,
+                                ]}
+                                colors={[
+                                  '#FFAE00',
+                                  '#FED943',
+                                  '#FFF39F',
+                                  '#FFF39F',
+                                  '#FFAE00',
+                                ]}
+                                style={styles.txtBtn}>
+                                <Text> Know your horse</Text>
+                              </LinearTextGradient>
+                            </LinearGradient>
+                          </View>
+                          <TouchableOpacity
+                            onPress={() => navigation.navigate('HorseDetail', {data: e})}>
+                            <View style={styles.button}>
+                              <LinearGradient
+                                start={{x: 0.0, y: 0.0}}
+                                end={{x: 0.0, y: 1.0}}
+                                useAngle={true}
+                                angle={90}
+                                locations={[0.0, 0.35, 0.5, 0.65, 1.0]}
+                                colors={[
+                                  '#189803',
+                                  '#33c81c',
+                                  '#4ee835',
+                                  '#33c81c',
+                                  '#189803',
+                                ]}
+                                style={[
+                                  styles.btnHorse,
+                                  {borderColor: '#0F6301', borderWidth: 0.5},
+                                ]}>
+                                <LinearTextGradient
+                                  start={{x: 0.0, y: 0.0}}
+                                  end={{x: 0.0, y: 1.0}}
+                                  useAngle={true}
+                                  angle={360}
+                                  locations={[
+                                    -0.0937,
+                                    0.0259,
+                                    0.2196,
+                                    0.8918,
+                                    1.0,
+                                  ]}
+                                  colors={[
+                                    '#FFAE00',
+                                    '#FED943',
+                                    '#FFF39F',
+                                    '#FFF39F',
+                                    '#FFAE00',
+                                  ]}
+                                  style={styles.txtBtn}>
+                                  <Text> Detail horse</Text>
+                                </LinearTextGradient>
+                              </LinearGradient>
+                            </View>
+                          </TouchableOpacity>
                         </View>
                       </LinearGradient>
                     ))
@@ -619,6 +994,89 @@ function RaceCard() {
 export default RaceCard;
 
 const styles = StyleSheet.create({
+  txtBtn: {
+    fontFamily: 'Inter',
+    fontStyle: 'normal',
+    fontWeight: '600',
+    fontSize: 18,
+    lineHeight: 22,
+  },
+  btnHorse: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 1,
+    width: 181,
+    height: 38,
+    borderRadius: 7,
+  },
+  button: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: (0, 0, 2),
+    width: 183,
+    height: 42,
+  },
+  horseBottom: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    padding: (8, 0),
+    width: 374,
+    height: 58,
+    marginTop: 8,
+  },
+  grass: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: (0, 4),
+    width: 106,
+    height: 24,
+    backgroundColor: 'rgba(0, 20, 30, 0.5)',
+    borderRadius: 4,
+  },
+  title: {
+    fontFamily: 'Inter',
+    fontStyle: 'normal',
+    fontWeight: '500',
+    fontSize: 14,
+    lineHeight: 24,
+    letterSpacing: 0.02,
+    color: '#FFFFFF',
+  },
+  race: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 0,
+    width: 158,
+    height: 32,
+    borderRadius: 8,
+  },
+  containerTitle: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 0,
+    width: 358,
+    height: 32,
+  },
+  stt: {
+    fontFamily: 'Inter',
+    fontStyle: 'normal',
+    fontWeight: '600',
+    fontSize: 22,
+    lineHeight: 27,
+    textAlign: 'right',
+    marginTop: -2,
+    width: 14,
+    height: 27,
+    marginLeft: 2,
+  },
   txtRating: {
     fontFamily: 'Inter',
     fontStyle: 'normal',
@@ -627,14 +1085,14 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     textAlign: 'right',
     letterSpacing: 0.02,
-    color: '#fff'
+    color: '#fff',
   },
   places: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     padding: 0,
-    marginRight: 10,
+    marginRight: 20,
     width: 38,
     height: 29,
   },
@@ -663,6 +1121,7 @@ const styles = StyleSheet.create({
     padding: (0, 8),
     width: 371,
     height: 65,
+    marginBottom: 2,
   },
   HorseMiddle: {
     display: 'flex',
@@ -767,7 +1226,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     padding: 8,
     width: 386,
-    height: 610,
+    height: 616,
   },
   txtSort: {
     fontFamily: 'Inter',
@@ -920,7 +1379,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 1.5,
     width: 390,
-    height: 1132,
+    height: 1146,
     borderColor: '#383838',
     borderWidth: 1,
     borderRadius: 9,
@@ -932,7 +1391,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     padding: 1,
     width: 392,
-    height: 1134,
+    // height: 1134,
     borderColor: '#FFAE00',
     borderWidth: 1,
     borderRadius: 10,

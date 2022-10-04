@@ -10,7 +10,7 @@
       "typeRoots": ["index.d.ts"],
       "types": ["node", "jest"]
     },
-    "include": ["**/*.ts", "**/*.tsx"],
+    "include": ["**/*.ts", "**/*.tsx", "frontend/App.tsx"],
     "exclude": [
       "node_modules",
       "babel.config.js",
