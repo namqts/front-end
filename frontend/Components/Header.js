@@ -1,36 +1,35 @@
-import React from 'react';
-import { View, StyleSheet, Image, Text } from 'react-native';
+import React, {useState} from 'react';
+import {View, StyleSheet, Image, Text} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import Address from './Address';
 
 export default function Header() {
+  const [data, setData] = useState('middle');
+  const [width, setWidth] = useState(170);
+
   return (
     <View style={styles.header}>
       <LinearGradient
-        start={{ x: 0.0, y: 0.0 }}
-        end={{ x: 0.0, y: 1.0 }}
-        useAngle={true}
-        angle={180}
-        locations={[0.0, 0.6279, 0.6868, 1.0]}
-        angleCenter={{ x: 0.5, y: 0.5 }}
-        colors={['#616B80', '#3A4459', '#2C3649', '#2B354A']}
-        style={styles.frameLeft}>
-        <View >
-          <Image source={require('./Image/back.png')}/>
-        </View>
-      </LinearGradient>
-      <LinearGradient
-        start={{ x: 0.0, y: 0.0 }}
-        end={{ x: 0.0, y: 1.0 }}
+        start={{x: 0.0, y: 0.0}}
+        end={{x: 0.0, y: 1.0}}
         useAngle={true}
         angle={180}
         locations={[0.0, 0.1615, 0.6426, 0.6927, 0.9615, 1.0]}
-        angleCenter={{ x: 0.5, y: 0.5 }}
-        colors={['#F8F8F8', '#B5B4B4', '#F1F1F1', '#504F4F', '#A7A7A7', '#D0D0D0']}
+        angleCenter={{x: 0.5, y: 0.5}}
+        colors={[
+          '#F8F8F8',
+          '#B5B4B4',
+          '#F1F1F1',
+          '#504F4F',
+          '#A7A7A7',
+          '#D0D0D0',
+        ]}
         style={styles.linear}>
         <View style={styles.viewContainer}>
-          <Address />
+          <View style={styles.address}>
+            <Address data={data} width={width} />
+          </View>
         </View>
         <View style={styles.pointSPC}>
           <Image source={require('./Image/Coincoin.png')} />
@@ -42,21 +41,7 @@ export default function Header() {
           </Text>
         </View>
       </LinearGradient>
-      <LinearGradient
-        start={{ x: 0.0, y: 0.0 }}
-        end={{ x: 0.0, y: 1.0 }}
-        useAngle={true}
-        angle={180}
-        locations={[0.0, 0.1615, 0.6426, 0.6927, 0.9615, 1.0]}
-        angleCenter={{ x: 0.5, y: 0.5 }}
-        colors={['#F8F8F8', '#B5B4B4', '#F1F1F1', '#504F4F', '#A7A7A7', '#D0D0D0']}
-        style={styles.frameRight}>
-        <View >
-          <Image source={require('./Image/menu.png')}/>
-        </View>
-      </LinearGradient>
     </View>
-
   );
 }
 const styles = StyleSheet.create({
@@ -64,27 +49,43 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
+    width: 300,
+    height: 52,
+    marginTop: 20,
+  },
+  address: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    margin: (4, 8),
+    width: 224,
+    height: 40,
+    backgroundColor: '#0D1E00',
+    borderColor: 'rgba(223, 230, 233, 0.25)',
+    borderWidth: 2,
+    elevation: 4,
+    shadowColor: 'rgba(0, 0, 0, 0.75)',
+    borderRadius: 4,
   },
   viewContainer: {
-    width: 283,
-    height: 48,
+    width: 346,
+    height: 52,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
+    shadowOffset: {width: 0, height: 4},
     shadowRadius: 2,
     shadowOpacity: 0.6,
     borderRadius: 8,
     marginLeft: -4,
-    marginBottom: 2,
     display: 'flex',
     alignItems: 'center',
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   linear: {
     borderRadius: 8,
     flexDirection: 'row',
     alignItems: 'center',
     display: 'flex',
-    marginLeft: 8
   },
   headerText: {
     width: 146,
@@ -94,7 +95,7 @@ const styles = StyleSheet.create({
     color: '#00CDEC',
     fontWeight: '300',
     display: 'flex',
-    alignItems: 'flex-end'
+    alignItems: 'flex-end',
   },
   pointSPC: {
     display: 'flex',
@@ -104,38 +105,12 @@ const styles = StyleSheet.create({
     width: 92,
     height: 40,
     marginLeft: -108,
-    marginTop: 2,
     marginRight: 4,
     backgroundColor: '#0D1E00',
     borderColor: 'rgba(223, 230, 233, 0.25)',
     borderWidth: 2,
     elevation: 4,
     shadowColor: 'rgba(0, 0, 0, 0.75)',
-    borderRadius: 4
+    borderRadius: 4,
   },
-  frameRight: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    padding: (6, 16, 6, 6),
-    width: 74,
-    height: 64,
-    shadowColor: 'inset 0px 0px 2px rgba(0, 0, 0, 0.75)',
-    borderTopLeftRadius: 50,
-    borderBottomLeftRadius: 50,
-    marginLeft: 10
-  },
-  frameLeft: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: (6, 16, 6, 6),
-    width: 55,
-    height: 48,
-    shadowColor: 'inset 0px 0px 2px rgba(0, 0, 0, 0.75)',
-    borderTopRightRadius: 50,
-    borderBottomRightRadius: 50,
-    borderColor: '#6E6E6E',
-    borderWidth: 0.5
-  }
 });

@@ -16,21 +16,8 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import {LinearTextGradient} from 'react-native-text-gradient';
 import {useNavigation} from '@react-navigation/native';
-
-const subjects = [
-  {id: 1, image: '#CE9C2C'},
-  {id: 2, image: '#E5B149'},
-  {id: 3, image: '#D5A75A'},
-  {id: 4, image: '#BF9C6B'},
-  {id: 5, image: '#B09581'},
-  {id: 6, image: '#9F8B93'},
-  {id: 7, image: '#8B7F9D'},
-  {id: 8, image: '#817CB7'},
-  {id: 9, image: '#232120'},
-  {id: 10, image: '#232120'},
-  {id: 11, image: '#232120'},
-  {id: 12, image: '#232120'},
-];
+import Tokyo from '../reuse/tokyo';
+import ClassRace from '../reuse/classRace';
 
 const races = [
   {
@@ -38,102 +25,114 @@ const races = [
     location: [0.0, 1.0],
     color: ['#DCDCDC', '#A8A8A8'],
     colorRace: '#A8A8A8',
-    imageG: require('../Image/g1.png'),
+    imageG: require('../Image/class-Race/class1.png'),
     yard: require('../Image/Yard.png'),
+    m: '1200m',
   },
   {
     id: 2,
     location: [0.0, 1.0],
     color: ['#04C5AE', '#2185BD'],
     colorRace: '#2185BD',
-    imageG: require('../Image/g2.png'),
+    imageG: require('../Image/class-Race/class4.png'),
     yard: require('../Image/Yard1.png'),
+    m: '2400m',
   },
   {
     id: 3,
     location: [0.0, 1.0],
     color: ['#992DFF', '#631EAB'],
     colorRace: '#631EAB',
-    imageG: require('../Image/g3.png'),
+    imageG: require('../Image/class-Race/class2.png'),
     yard: require('../Image/Yard1.png'),
+    m: '2400m',
   },
   {
     id: 4,
     location: [0.0, 1.0],
     color: ['#92CAF9', '#6791B2'],
     colorRace: '#6791B2',
-    imageG: require('../Image/g2.png'),
+    imageG: require('../Image/class-Race/class1.png'),
     yard: require('../Image/Yard1.png'),
+    m: '2400m',
   },
   {
     id: 5,
     location: [0.0, 1.0],
     color: ['#DCDCDC', '#A8A8A8'],
     colorRace: '#A8A8A8',
-    imageG: require('../Image/g1.png'),
+    imageG: require('../Image/class-Race/class7.png'),
     yard: require('../Image/Yard.png'),
+    m: '1200m',
   },
   {
     id: 6,
     location: [0.0, 1.0],
     color: ['#FFE32D', '#AB941E'],
     colorRace: '#AB941E',
-    imageG: require('../Image/g3.png'),
+    imageG: require('../Image/class-Race/class5.png'),
     yard: require('../Image/Yard.png'),
+    m: '1200m',
   },
   {
     id: 7,
     location: [0.0, 1.0],
     color: ['#FF2D2D', '#AB1E1E'],
     colorRace: '#AB1E1E',
-    imageG: require('../Image/g2.png'),
+    imageG: require('../Image/class-Race/class6.png'),
     yard: require('../Image/Yard.png'),
+    m: '1200m',
   },
   {
     id: 8,
     location: [0.0, 1.0],
     color: ['#E27808', '#B15D04'],
     colorRace: '#B15D04',
-    imageG: require('../Image/g2.png'),
+    imageG: require('../Image/class-Race/class2.png'),
     yard: require('../Image/Yard.png'),
+    m: '1200m',
   },
   {
     id: 9,
     location: [0.0, 1.0],
     color: ['#E00283', '#A40060'],
     colorRace: '#A40060',
-    imageG: require('../Image/g1.png'),
+    imageG: require('../Image/class-Race/class3.png'),
     yard: require('../Image/Yard.png'),
+    m: '1200m',
   },
   {
     id: 10,
     location: [0.0, 1.0],
     color: ['#92CAF9', '#6791B2'],
     colorRace: '#6791B2',
-    imageG: require('../Image/g3.png'),
+    imageG: require('../Image/class-Race/class2.png'),
     yard: require('../Image/Yard1.png'),
+    m: '2400m',
   },
   {
     id: 11,
     location: [0.0, 1.0],
     color: ['#04C5AE', '#2185BD'],
     colorRace: '#2185BD',
-    imageG: require('../Image/g3.png'),
+    imageG: require('../Image/class-Race/class7.png'),
     yard: require('../Image/Yard1.png'),
+    m: '2400m',
   },
   {
     id: 12,
     location: [0.0, 1.0],
     color: ['#992DFF', '#631EAB'],
     colorRace: '#631EAB',
-    imageG: require('../Image/g1.png'),
+    imageG: require('../Image/class-Race/class3.png'),
     yard: require('../Image/Yard1.png'),
+    m: '2400m',
   },
 ];
 
 export default function RaceList() {
   const navigation = useNavigation();
-  
+
   return (
     <View style={{marginTop: 6}}>
       {races.map((race, i) => (
@@ -173,51 +172,40 @@ export default function RaceList() {
                 borderRightColor: 'transparent',
                 borderBottomColor: race.colorRace,
                 display: 'flex',
-                marginLeft: 12,
+                marginLeft: 10,
               }}
             />
             <View
               style={{
                 flexDirection: 'row',
-                flexWrap: 'wrap',
-                marginLeft: -10,
+                alignItems: 'center',
+                justifyContent: 'flex-start',
                 display: 'flex',
-                zIndex: -2,
-                width: 100,
+                width: 80,
               }}>
-              {subjects.map((subject, i) => {
-                return (
-                  <View
-                    key={subject.id}
-                    style={{
-                      width: 6,
-                      height: 16,
-                      backgroundColor: subject.image,
-                      borderRadius: 1,
-                      marginTop: 6,
-                      marginLeft: 2,
-                    }}></View>
-                );
-              })}
+              <Text style={styles.text}>Take bets</Text>
             </View>
-            <Text style={styles.text}>8</Text>
-            <Image
-              source={require('../Image/horse.png')}
+
+            <View
               style={{
-                marginTop: 6,
-                marginLeft: 3,
-                marginRight: 3,
-              }}
-            />
-            <ImageBackground source={race.yard} style={styles.yard}>
-              <Text></Text>
-            </ImageBackground>
-            <View style={styles.time}>
-              <ImageBackground
-                source={require('../Image/time.png')}
-                style={styles.time}>
-                <Text></Text>
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'flex-end',
+                display: 'flex',
+                width: 179,
+              }}>
+              <ImageBackground source={race.yard} style={styles.yard}>
+                <Text style={[styles.text, {fontSize: 12, lineHeight: 12}]}>
+                  {race.m}
+                </Text>
               </ImageBackground>
+              <View style={styles.time}>
+                <ImageBackground
+                  source={require('../Image/time.png')}
+                  style={styles.time}>
+                  <Text></Text>
+                </ImageBackground>
+              </View>
             </View>
           </LinearGradient>
 
@@ -229,10 +217,25 @@ export default function RaceList() {
             locations={[0.0, 0.8787, 0.9054, 1.0]}
             colors={['#353C3E', '#959796', '#13191D', '#555B61']}
             style={styles.containerHorse}>
-            <Image source={race.imageG} style={styles.borderG} />
+            <View style={styles.name}>
+              <View style={styles.raceName}>
+                <View style={styles.raceCorse}>
+                  <Tokyo />
+                </View>
+                <Text style={[styles.text, {marginLeft: 8}]}>
+                  Karitekisuto race
+                </Text>
+              </View>
+              <ClassRace/>
+            </View>
+            <TouchableOpacity onPress={() => navigation.navigate('Transfer')}>
+              <View style={styles.btn}>
+                <Image source={require('../Image/button.png')} />
+              </View>
+            </TouchableOpacity>
+            {/* <Image source={race.imageG} />
             <Text style={styles.raceTxt}>Karitekisuto race</Text>
-            <TouchableOpacity
-              onPress={() => navigation.navigate('Transfer')}>
+            <TouchableOpacity onPress={() => navigation.navigate('Transfer')}>
               <LinearGradient
                 start={{x: 0.0, y: 0.0}}
                 end={{x: 0.0, y: 1.0}}
@@ -257,7 +260,7 @@ export default function RaceList() {
                   <Text>Detail {'&'} betting</Text>
                 </LinearTextGradient>
               </LinearGradient>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </LinearGradient>
         </LinearGradient>
       ))}
@@ -266,6 +269,43 @@ export default function RaceList() {
 }
 
 const styles = StyleSheet.create({
+  btn: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 0,
+    width: 78,
+    height: 50,
+    marginBottom: 12,
+  },
+  raceCorse: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    padding: 0,
+    width: 49,
+    height: 24,
+    borderRadius: 4,
+  },
+  raceName: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: (0, 8),
+    width: 200,
+    height: 24,
+  },
+  name: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    padding: 0,
+    width: 258,
+    height: 92,
+    marginBottom: 10,
+  },
   txtBetting: {
     width: 60,
     height: 28,
@@ -303,45 +343,42 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     textAlign: 'center',
   },
-  borderG: {
-    marginLeft: 17,
-    borderColor: '#FED943',
-    borderWidth: 1,
-  },
   containerHorse: {
     width: 356,
-    height: 59,
+    height: 120,
     display: 'flex',
-    marginTop: -1,
     flexDirection: 'row',
-    alignItems: 'center',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    padding: 4,
     borderColor: 'rgba(19, 0, 0, 0.5)',
-    borderWidth: 0.5,
-    borderBottomLeftRadius: 7,
-    borderBottomRightRadius: 7,
+    borderRadius: (0, 0, 7, 7),
     elevation: 8,
-    borderColor: '#555B61',
-    borderWidth: 1,
+    borderWidth: 0.5,
   },
   time: {
-    width: 72,
-    height: 23,
-    padding: 0.2,
+    width: 71,
+    height: 22,
+    padding: 1,
     backgroundColor: '#DCDCDC',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   yard: {
     width: 62,
     height: 24,
     marginLeft: 13.5,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   text: {
+    fontFamily: 'Inter',
     fontStyle: 'normal',
-    fontWeight: '700',
-    fontSize: 14,
+    fontWeight: '600',
+    fontSize: 16,
     lineHeight: 24,
     letterSpacing: 0.02,
     color: '#FFFFFF',
-    marginTop: 2,
   },
   txtNumber: {
     fontStyle: 'italic',
@@ -354,9 +391,10 @@ const styles = StyleSheet.create({
     textShadowColor: 'rgba(0, 0, 0, 0.25)',
     textShadowOffset: {height: 1, width: 1},
     textShadowRadius: 4,
+    width: 60,
   },
   numberRace: {
-    width: 72,
+    width: 80,
     height: 26,
     alignItems: 'flex-start',
     borderTopLeftRadius: 8,
@@ -368,9 +406,9 @@ const styles = StyleSheet.create({
     marginTop: 2,
     marginLeft: 8,
     marginRight: 8,
-    marginBottom: 2,
+    marginBottom: 40,
     width: 357,
-    height: 86,
+    height: 120,
     flexDirection: 'column',
     display: 'flex',
     borderTopLeftRadius: 8,

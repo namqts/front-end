@@ -68,9 +68,9 @@ const LoginScreen = ({ navigation }) => {
     authenticate({ connector })
       .then(() => {
         if (authError) {
-          // setErrortext(authError.message);
-          // setVisible(true);
-          navigation.replace("DrawerNavigationRoutes");
+          setErrortext(authError.message);
+          setVisible(true);
+          // navigation.replace("DrawerNavigationRoutes");
         } else {
           if (isAuthenticated) {
             navigation.replace("DrawerNavigationRoutes");

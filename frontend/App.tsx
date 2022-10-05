@@ -17,8 +17,12 @@ import Transfer from './Components/RaceDetail/Transfer';
 import Profile from './Components/Profile/Profile';
 import Header from './Components/Header';
 import HeaderAfter from './Components/HeaderAfter';
+import HeaderLeft from './Components/reuse/headerLeft';
+import HeaderRight from './Components/reuse/headerRight';
 import NFTAssets from './Components/NFT/NFTAssets';
 import HorseDetail from './Components/RaceDetail/HorseDetail';
+import BetConfirm from './Components/RaceDetail/BetConfirm';
+
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {
   faCreditCard,
@@ -36,17 +40,20 @@ LogBox.ignoreAllLogs();
 function Home(): JSX.Element {
   return (
     <Stack.Navigator
-      screenOptions={{
-        headerShown: true,
-      }}
-      // shifting={false}
-      // activeColor="#315399"
-      // inactiveColor="#3e2465"
-      // barStyle={{backgroundColor: 'white'}}
+    // screenOptions={{
+    //   headerShown: true,
+    // }}
+    // shifting={false}
+    // activeColor="#315399"
+    // inactiveColor="#3e2465"
+    // barStyle={{backgroundColor: 'white'}}
     >
       <Stack.Screen
         name="Assets"
-        options={{header: props => <HeaderAfter />}}
+        options={{
+          headerRight: props => <HeaderRight />,
+          headerTitle: props => <Header />,
+        }}
         // options={{
         //   tabBarLabel: 'Assets',
         //   tabBarIcon: ({color, focused}) => {
@@ -57,7 +64,11 @@ function Home(): JSX.Element {
       />
       <Stack.Screen
         name="Transactions"
-        options={{header: props => <Header />}}
+        options={{
+          headerLeft: props => <HeaderLeft />,
+          headerRight: props => <HeaderRight />,
+        }}
+        // options={{header: props => <Header />}}
         // options={{
         //   tabBarLabel: 'Transactions',
         //   tabBarIcon: ({color}) => (
@@ -68,7 +79,11 @@ function Home(): JSX.Element {
       />
       <Stack.Screen
         name="NFTAssets"
-        options={{header: props => <Header />}}
+        options={{
+          headerLeft: props => <HeaderLeft />,
+          headerRight: props => <HeaderRight />,
+        }}
+        // options={{header: props => <Header />}}
         // options={{
         //   tabBarLabel: 'NFTAssets',
         //   tabBarIcon: ({color, focused}) => {
@@ -79,7 +94,12 @@ function Home(): JSX.Element {
       />
       <Stack.Screen
         name="Transfer"
-        options={{header: props => <Header />}}
+        options={{
+          headerLeft: props => <HeaderLeft />,
+          headerTitle: props => <HeaderAfter />,
+          headerRight: props => <HeaderRight />,
+        }}
+        // options={{header: props => <Header />}}
         // options={{
         //   tabBarLabel: 'Transfer',
         //   tabBarIcon: ({color}) => (
@@ -91,7 +111,12 @@ function Home(): JSX.Element {
 
       <Stack.Screen
         name="Profile"
-        options={{header: props => <Header />}}
+        options={{
+          headerLeft: props => <HeaderLeft />,
+          headerTitle: props => <HeaderAfter />,
+          headerRight: props => <HeaderRight />,
+        }}
+        // options={{header: props => <Header />}}
         // options={{
         //   tabBarLabel: 'Profile',
         //   tabBarIcon: ({color}) => (
@@ -102,7 +127,12 @@ function Home(): JSX.Element {
       />
       <Stack.Screen
         name="HorseDetail"
-        options={{header: props => <Header />}}
+        options={{
+          headerLeft: props => <HeaderLeft />,
+          headerTitle: props => <HeaderAfter />,
+          headerRight: props => <HeaderRight />,
+        }}
+        // options={{header: props => <Header />}}
         // options={{
         //   tabBarLabel: 'HorseDetail',
         //   tabBarIcon: ({color}) => (
@@ -110,6 +140,20 @@ function Home(): JSX.Element {
         //   ),
         // }}
         component={HorseDetail}
+      />
+      <Stack.Screen
+        name="BetConfirm"
+        options={{
+          headerLeft: props => <HeaderLeft />
+        }}
+        // options={{header: props => <Header />}}
+        // options={{
+        //   tabBarLabel: 'HorseDetail',
+        //   tabBarIcon: ({color}) => (
+        //     <FontAwesomeIcon icon={faUser} color={color} size={20} />
+        //   ),
+        // }}
+        component={BetConfirm}
       />
     </Stack.Navigator>
   );
@@ -134,6 +178,8 @@ function getHeaderTitle(route) {
       return 'Profile';
     case 'HorseDetail':
       return 'HorseDetail';
+    case 'BetConfirm':
+      return 'BetConfirm';
   }
 }
 
@@ -159,11 +205,7 @@ function App(): JSX.Element {
 
   return (
     <NavigationContainer theme={MyTheme}>
-      <Stack.Navigator
-        initialRouteName="Auth"
-        screenOptions={{
-          headerShown: false,
-        }}>
+      <Stack.Navigator initialRouteName="Auth">
         {/* Auth Navigator: Include Login and Signup */}
         {/* <Stack.Screen
           name="Auth"
@@ -176,6 +218,7 @@ function App(): JSX.Element {
           component={Home}
           // Hiding header for Navigation Drawer
           // options={{headerTitle: props => <Header />}}
+          options={{headerShown: false}}
           // options={({ route }) => ({
           //   headerTitle: getHeaderTitle(route),
           // })}

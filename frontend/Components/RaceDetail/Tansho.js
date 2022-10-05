@@ -4,6 +4,7 @@ import {StyleSheet, View, Image, Text, TouchableOpacity} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {faCaretDown} from '@fortawesome/free-solid-svg-icons';
 import ChipBet from '../reuse/ChipBet';
+import {useNavigation} from '@react-navigation/native';
 
 const horseList = [
   {
@@ -134,6 +135,8 @@ function Tansho() {
     setId(id);
   };
 
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -192,12 +195,15 @@ function Tansho() {
               <View style={styles.btnBorder}>
                 <Image source={require('../Image/clear.png')} />
               </View>
-              <View style={styles.btnBorder}>
-                <Image
-                  source={require('../Image/bet.png')}
-                  style={{marginLeft: -8}}
-                />
-              </View>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('BetConfirm', {data: horseList})}>
+                <View style={styles.btnBorder}>
+                  <Image
+                    source={require('../Image/bet.png')}
+                    style={{marginLeft: -8}}
+                  />
+                </View>
+              </TouchableOpacity>
             </View>
           </View>
         </LinearGradient>

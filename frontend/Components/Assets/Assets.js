@@ -24,6 +24,7 @@ export default function Assets() {
   // const nativeName = useMemo(() => getNativeByChain(options?.chain || chainId), [options, chainId]);
   return (
     <SafeAreaView style={[StyleSheet.absoluteFill, styles.container]}>
+      <StatusBar translucent backgroundColor='rgb(53, 60, 62)'/>
       <ScrollView>
         <LinearGradient
           start={{ x: 0.0, y: 0.0 }}

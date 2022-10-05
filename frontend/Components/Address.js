@@ -13,7 +13,7 @@ import {faCopy} from '@fortawesome/free-solid-svg-icons';
 import {Tooltip} from '@ui-kitten/components';
 import Blockie from './Blockie';
 
-export default function Address() {
+export default function Address(props) {
   const {walletAddress, chainId} = useMoralisDapp();
   const [tipVisible, setTipVisible] = useState(false);
 
@@ -23,22 +23,20 @@ export default function Address() {
   };
 
   const renderAddress = () => (
-    <View style={styles.viewContainer}>
-      <TouchableOpacity
+    <TouchableOpacity
         style={styles.imageContainer}
         onPress={() => copyToClipboard()}>
         <Blockie address={walletAddress} size={100}/>
 
         <Text
-          style={styles.headerText}
-          ellipsizeMode={'middle'}
+          style={[styles.headerText, { width: props.width}]}
+          ellipsizeMode={props.data}
           numberOfLines={1}>
           {walletAddress}
         </Text>
 
         {/* <FontAwesomeIcon icon={faCopy} size={15} color="darkgreen" /> */}
       </TouchableOpacity>
-    </View>
   );
 
   return (
@@ -51,20 +49,6 @@ export default function Address() {
   );
 }
 const styles = StyleSheet.create({
-  viewContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    margin: (4, 8),
-    width: 224,
-    height: 40,
-    backgroundColor: '#0D1E00',
-    borderColor: 'rgba(223, 230, 233, 0.25)',
-    borderWidth: 2,
-    elevation: 4,
-    shadowColor: 'rgba(0, 0, 0, 0.75)',
-    borderRadius: 4
-  },
   imageContainer: {
     height: 52,
     width: 52,
@@ -75,7 +59,6 @@ const styles = StyleSheet.create({
     bottom: 0,
   },
   headerText: {
-    width: 170,
     height: 16,
     fontStyle: 'normal',
     fontSize: 14,

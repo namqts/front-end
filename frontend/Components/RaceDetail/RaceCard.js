@@ -934,7 +934,7 @@ function RaceCard() {
                             </LinearGradient>
                           </View>
                           <TouchableOpacity
-                            onPress={() => navigation.navigate('HorseDetail', {data: e})}>
+                            onPress={() => navigation.navigate('BetConfirm')}>
                             <View style={styles.button}>
                               <LinearGradient
                                 start={{x: 0.0, y: 0.0}}

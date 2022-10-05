@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     padding: (0, 12),
     width: 650,
-    height: 1642,
+    // height: 926,
     marginTop: -40,
   },
 });

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
   SafeAreaView,
@@ -7,12 +7,15 @@ import {
   Text,
   Image,
   ImageBackground,
+  TouchableOpacity,
 } from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
 import {LinearTextGradient} from 'react-native-text-gradient';
 import {Dimensions} from 'react-native';
-import KariRace from '../RaceDetail/KariRace'
+import KariRace from '../RaceDetail/KariRace';
+import Tokyo from '../reuse/tokyo';
+import ClassRace from '../reuse/classRace';
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
@@ -23,7 +26,7 @@ const races = [
     location: [0.0, 1.0],
     color: ['#DCDCDC', '#A8A8A8'],
     colorRace: '#A8A8A8',
-    imageG: require('../Image/g1.png'),
+    imageG: require('../Image/class-Race/class7.png'),
     yard: require('../Image/Yard.png'),
   },
   {
@@ -31,7 +34,7 @@ const races = [
     location: [0.0, 1.0],
     color: ['#04C5AE', '#2185BD'],
     colorRace: '#2185BD',
-    imageG: require('../Image/g2.png'),
+    imageG: require('../Image/class-Race/class7.png'),
     yard: require('../Image/Yard1.png'),
   },
   {
@@ -39,7 +42,7 @@ const races = [
     location: [0.0, 1.0],
     color: ['#992DFF', '#631EAB'],
     colorRace: '#631EAB',
-    imageG: require('../Image/g3.png'),
+    imageG: require('../Image/class-Race/class1.png'),
     yard: require('../Image/Yard1.png'),
   },
   {
@@ -47,7 +50,7 @@ const races = [
     location: [0.0, 1.0],
     color: ['#92CAF9', '#6791B2'],
     colorRace: '#6791B2',
-    imageG: require('../Image/g2.png'),
+    imageG: require('../Image/class-Race/class5.png'),
     yard: require('../Image/Yard1.png'),
   },
   {
@@ -55,7 +58,7 @@ const races = [
     location: [0.0, 1.0],
     color: ['#DCDCDC', '#A8A8A8'],
     colorRace: '#A8A8A8',
-    imageG: require('../Image/g1.png'),
+    imageG: require('../Image/class-Race/class2.png'),
     yard: require('../Image/Yard.png'),
   },
   {
@@ -63,7 +66,7 @@ const races = [
     location: [0.0, 1.0],
     color: ['#FFE32D', '#AB941E'],
     colorRace: '#AB941E',
-    imageG: require('../Image/g3.png'),
+    imageG: require('../Image/class-Race/class3.png'),
     yard: require('../Image/Yard.png'),
   },
 ];
@@ -74,7 +77,7 @@ const races1 = [
     location: [0.0, 1.0],
     color: ['#FF2D2D', '#AB1E1E'],
     colorRace: '#AB1E1E',
-    imageG: require('../Image/g2.png'),
+    imageG: require('../Image/class-Race/class2.png'),
     yard: require('../Image/Yard.png'),
   },
   {
@@ -82,7 +85,7 @@ const races1 = [
     location: [0.0, 1.0],
     color: ['#E27808', '#B15D04'],
     colorRace: '#B15D04',
-    imageG: require('../Image/g2.png'),
+    imageG: require('../Image/class-Race/class1.png'),
     yard: require('../Image/Yard.png'),
   },
   {
@@ -90,7 +93,7 @@ const races1 = [
     location: [0.0, 1.0],
     color: ['#E00283', '#A40060'],
     colorRace: '#A40060',
-    imageG: require('../Image/g1.png'),
+    imageG: require('../Image/class-Race/class5.png'),
     yard: require('../Image/Yard.png'),
   },
   {
@@ -98,7 +101,7 @@ const races1 = [
     location: [0.0, 1.0],
     color: ['#92CAF9', '#6791B2'],
     colorRace: '#6791B2',
-    imageG: require('../Image/g3.png'),
+    imageG: require('../Image/class-Race/class3.png'),
     yard: require('../Image/Yard1.png'),
   },
   {
@@ -106,7 +109,7 @@ const races1 = [
     location: [0.0, 1.0],
     color: ['#04C5AE', '#2185BD'],
     colorRace: '#2185BD',
-    imageG: require('../Image/g3.png'),
+    imageG: require('../Image/class-Race/class6.png'),
     yard: require('../Image/Yard1.png'),
   },
   {
@@ -114,36 +117,72 @@ const races1 = [
     location: [0.0, 1.0],
     color: ['#992DFF', '#631EAB'],
     colorRace: '#631EAB',
-    imageG: require('../Image/g1.png'),
+    imageG: require('../Image/class-Race/class2.png'),
     yard: require('../Image/Yard1.png'),
   },
 ];
 
 function Transfer() {
+  const [isOpen, setIsOpen] = useState(true);
+
   return (
     <SafeAreaView style={styles.container}>
-      <ImageBackground
-        source={require('../Image/bg-betting.png')}
-        resizeMode="cover"
-        style={styles.image}>
-        <ScrollView>
+      <ScrollView>
+        {isOpen ? (
           <View style={styles.containerLive}>
             <Image
               source={require('../Image/live-race.png')}
               style={styles.live}
             />
           </View>
-          <Image source={require('../Image/Noti.png')} style={{marginTop: 4}} />
-          <LinearGradient
-            start={{x: 0.0, y: 0.0}}
-            end={{x: 0.0, y: 1.0}}
-            useAngle={true}
-            angle={180}
-            locations={[0.0, 0.8787, 0.9054, 1.0]}
-            angleCenter={{x: 0.5, y: 0.5}}
-            colors={['#35383E', '#818796', '#13191D', '#555B61']}
-            style={styles.raceContainer}>
-            {races.map((race, i) => (
+        ) : null}
+        <Image source={require('../Image/Noti.png')} style={{marginTop: 4}} />
+        <LinearGradient
+          start={{x: 0.0, y: 0.0}}
+          end={{x: 0.0, y: 1.0}}
+          useAngle={true}
+          angle={180}
+          locations={[0.0, 0.8787, 0.9054, 1.0]}
+          angleCenter={{x: 0.5, y: 0.5}}
+          colors={['#35383E', '#818796', '#13191D', '#555B61']}
+          style={styles.raceContainer}>
+          {races.map((race, i) => (
+            <LinearGradient
+              start={{x: 0.0, y: 0.0}}
+              end={{x: 0.0, y: 1.0}}
+              useAngle={true}
+              angle={90}
+              locations={race.location}
+              colors={race.color}
+              style={styles.numberRace}>
+              <Text style={styles.txtNumber}>{race.id} RACE</Text>
+              <View
+                style={{
+                  borderColor: '#B5B4B4',
+                  borderBottomWidth: 1,
+                }}>
+                <View
+                  style={{
+                    width: 0,
+                    height: 0,
+                    borderStyle: 'solid',
+                    borderLeftWidth: 0,
+                    borderRightWidth: 16,
+                    borderBottomWidth: 23,
+                    borderLeftColor: 'transparent',
+                    borderRightColor: 'transparent',
+                    borderBottomColor: race.colorRace,
+                    display: 'flex',
+                    zIndex: 1,
+                    marginLeft: 13.6,
+                  }}
+                />
+              </View>
+            </LinearGradient>
+          ))}
+
+          <View style={styles.races1}>
+            {races1.map((race, i) => (
               <LinearGradient
                 start={{x: 0.0, y: 0.0}}
                 end={{x: 0.0, y: 1.0}}
@@ -165,157 +204,123 @@ function Transfer() {
                       borderStyle: 'solid',
                       borderLeftWidth: 0,
                       borderRightWidth: 16,
-                      borderBottomWidth: 23,
+                      borderBottomWidth: 24,
                       borderLeftColor: 'transparent',
                       borderRightColor: 'transparent',
                       borderBottomColor: race.colorRace,
-                      display: 'flex',
-                      zIndex: 1,
-                      marginLeft: 13.6,
+                      marginLeft: 7,
                     }}
                   />
                 </View>
               </LinearGradient>
             ))}
-
-            <View style={styles.races1}>
-              {races1.map((race, i) => (
-                <LinearGradient
-                  start={{x: 0.0, y: 0.0}}
-                  end={{x: 0.0, y: 1.0}}
-                  useAngle={true}
-                  angle={90}
-                  locations={race.location}
-                  colors={race.color}
-                  style={styles.numberRace}>
-                  <Text style={styles.txtNumber}>{race.id} RACE</Text>
-                  <View
-                    style={{
-                      borderColor: '#B5B4B4',
-                      borderBottomWidth: 1,
-                    }}>
-                    <View
-                      style={{
-                        width: 0,
-                        height: 0,
-                        borderStyle: 'solid',
-                        borderLeftWidth: 0,
-                        borderRightWidth: 16,
-                        borderBottomWidth: 24,
-                        borderLeftColor: 'transparent',
-                        borderRightColor: 'transparent',
-                        borderBottomColor: race.colorRace,
-                        marginLeft: 7,
-                      }}
-                    />
-                  </View>
-                </LinearGradient>
-              ))}
-            </View>
-          </LinearGradient>
-          <View
-            style={{
-              width: screenWidth,
-              height: 130,
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-            <LinearGradient
-              start={{x: 0.0, y: 0.0}}
-              end={{x: 0.0, y: 1.0}}
-              useAngle={true}
-              angle={180}
-              locations={[0.0, 0.01, 0.4635, 0.5104, 1.0]}
-              angleCenter={{x: 0.5, y: 0.5}}
-              colors={[
-                'rgba(88, 88, 88, 0.5)',
-                'rgba(88, 88, 88, 0.5)',
-                'rgba(88, 88, 88, 0.5)',
-                'rgba(56, 56, 56, 0.5)',
-                'rgba(88, 88, 88, 0.5)',
-              ]}
-              style={styles.takeBet}>
-              <ImageBackground
-                source={require('../Image/Rec-left.png')}
-                style={{flex: 1, width: 64, alignItems: 'flex-start'}}>
-                <Image
-                  source={require('../Image/icon-left.png')}
-                  style={{margin: 2, marginLeft: 4}}
-                />
-              </ImageBackground>
-              <LinearTextGradient
-                locations={[0.0, 0.2917, 0.4635, 0.5417, 0.7656, 1.0]}
-                colors={[
-                  '#FFAE00',
-                  '#FED943',
-                  '#FFF39F',
-                  '#FFF39F',
-                  '#F5D23E',
-                  '#FFAE00',
-                ]}
-                angle={360}
-                start={{x: 0.0, y: 0.0}}
-                end={{x: 0.0, y: 1.0}}
-                style={styles.txtBet}>
-                <Text>Take bets</Text>
-              </LinearTextGradient>
-              <View
-                style={{
-                  marginBottom: 4,
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                }}>
-                <Image source={require('../Image/Yard1.png')} />
-                <Image
-                  source={require('../Image/time.png')}
-                  style={{
-                    borderWidth: 0.5,
-                    borderColor: '#D0D0D0',
-                  }}
-                />
-              </View>
-              <ImageBackground
-                source={require('../Image/Rec-right.png')}
-                style={{
-                  flex: 1,
-                  width: 64,
-                  alignItems: 'center',
-                  marginLeft: 4,
-                }}>
-                <Image
-                  source={require('../Image/icon-right.png')}
-                  style={{margin: 2, marginLeft: 4}}
-                />
-              </ImageBackground>
-            </LinearGradient>
-            <View style={{flexDirection: 'row', alignItems: 'center', marginTop: 20}}>
-              <Text style={styles.txtNumber}>12/12</Text>
-              <Image
-                source={require('../Image/horse.png')}
-                style={{
-                  marginLeft: 3,
-                }}
-              />
-            </View>
-            <View style={{flexDirection: 'row',}}>
-              <View style={{width: 270, marginLeft: 30, height: 50, alignItems: 'center'}}>
-                <Text style={styles.txt}>Karitekisuto race</Text>
-              </View>
-              <Image
-                source={require('../Image/stop.png')}
-                style={{
-                  borderColor: '#DD9A09',
-                  borderWidth: 1,
-                  borderRadius: 100,
-                  marginTop: -20
-                }}
-              />
-            </View>
           </View>
-          <KariRace/>
-        </ScrollView>
-      </ImageBackground>
+        </LinearGradient>
+        <View
+          style={{
+            width: screenWidth,
+            height: 40,
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}>
+          <LinearGradient
+            start={{x: 0.0, y: 0.0}}
+            end={{x: 0.0, y: 1.0}}
+            useAngle={true}
+            angle={180}
+            locations={[0.0, 0.01, 0.4635, 0.5104, 1.0]}
+            angleCenter={{x: 0.5, y: 0.5}}
+            colors={[
+              'rgba(88, 88, 88, 0.5)',
+              'rgba(88, 88, 88, 0.5)',
+              'rgba(88, 88, 88, 0.5)',
+              'rgba(56, 56, 56, 0.5)',
+              'rgba(88, 88, 88, 0.5)',
+            ]}
+            style={styles.takeBet}>
+            <ImageBackground
+              source={require('../Image/Rec-left.png')}
+              style={{
+                width: 64,
+                marginTop: 4,
+                alignItems: 'flex-start',
+                justifyContent: 'flex-start',
+              }}>
+              <Image
+                source={require('../Image/icon-left.png')}
+                style={{margin: 2, marginLeft: 4}}
+              />
+            </ImageBackground>
+            <Text style={styles.txtBet}>Take bets</Text>
+            <View
+              style={{
+                marginBottom: 4,
+                flexDirection: 'row',
+                alignItems: 'center',
+              }}>
+              <ImageBackground
+                source={require('../Image/Yard1.png')}
+                style={{
+                  width: 62,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginLeft: 20,
+                  height: 24,
+                }}>
+                <Text style={[styles.txtBet, {fontSize: 12, lineHeight: 12}]}>
+                  2400m
+                </Text>
+              </ImageBackground>
+              <Image
+                source={require('../Image/time.png')}
+                style={{
+                  borderWidth: 0.5,
+                  borderColor: '#D0D0D0',
+                }}
+              />
+            </View>
+            <ImageBackground
+              source={require('../Image/Rec-right.png')}
+              style={{
+                width: 64,
+                alignItems: 'flex-end',
+                marginRight: 16,
+              }}>
+              <Image
+                source={require('../Image/icon-right.png')}
+                style={{margin: 2, marginLeft: 4}}
+              />
+            </ImageBackground>
+          </LinearGradient>
+        </View>
+        <View style={styles.title}>
+          <View style={styles.CtnName}>
+            <View style={styles.ctnTitle}>
+              <View style={styles.room}>
+                <Tokyo />
+              </View>
+              <View style={styles.name}>
+                <Text style={[styles.text]}>Karitekisuto race</Text>
+                <TouchableOpacity onPress={() => setIsOpen(!isOpen)}>
+                  {isOpen ? (
+                    <Image
+                      source={require('../Image/stop.png')}
+                      style={{marginLeft: 20}}
+                    />
+                  ) : (
+                    <Image
+                      source={require('../Image/start.png')}
+                      style={{marginLeft: 20}}
+                    />
+                  )}
+                </TouchableOpacity>
+              </View>
+            </View>
+            <ClassRace />
+          </View>
+        </View>
+        <KariRace />
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -323,6 +328,61 @@ function Transfer() {
 export default Transfer;
 
 const styles = StyleSheet.create({
+  text: {
+    fontFamily: 'Inter',
+    fontStyle: 'normal',
+    fontWeight: '700',
+    fontSize: 24,
+    lineHeight: 28,
+    letterSpacing: 0.02,
+    color: '#FFFFFF',
+    width: 209,
+    height: 28,
+    marginLeft: 20,
+  },
+  name: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'flex-start',
+    padding: 0,
+    width: 230,
+    height: 28,
+  },
+  room: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 74,
+    height: 24,
+    backgroundColor: 'rgba(0, 20, 30, 0.5)',
+    borderRadius: 4,
+  },
+  ctnTitle: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: 0,
+    width: 209,
+    height: 56,
+  },
+  CtnName: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: 0,
+    width: 226,
+    height: 144,
+  },
+  title: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: (8, 0),
+    width: 428,
+    height: 160,
+  },
   txt: {
     fontFamily: 'Inter',
     fontStyle: 'normal',
@@ -334,27 +394,29 @@ const styles = StyleSheet.create({
   },
   txtBet: {
     fontFamily: 'Inter',
-    width: 104,
-    height: 27,
     fontStyle: 'normal',
     fontWeight: '600',
-    fontSize: 22,
-    lineHeight: 27,
+    fontSize: 16,
+    lineHeight: 24,
+    letterSpacing: 0.02,
     display: 'flex',
     alignItems: 'flex-start',
-    marginRight: 24,
+    color: '#fff',
   },
   takeBet: {
+    display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
     alignItems: 'center',
     position: 'absolute',
+    padding: (4, 80, 0),
     width: 428,
     height: 32,
     left: 0,
-    top: 0.45,
+    top: -1.5,
     borderColor: 'rgba(19, 0, 0, 0.25)',
     borderWidth: 0.5,
+    shadowColor: '#000',
   },
   races1: {
     display: 'flex',
@@ -406,7 +468,6 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     padding: 0,
     marginTop: 20,
-    height: '100%',
     width: '100%',
   },
   containerLive: {
