@@ -19,7 +19,7 @@ import { Card } from "@ui-kitten/components";
 import LinearGradient from "react-native-linear-gradient";
 import RaceList from "./Race";
 
-export default function Assets() {
+export default function Assets( ) {
   const { Moralis } = useMoralis();
   // const nativeName = useMemo(() => getNativeByChain(options?.chain || chainId), [options, chainId]);
   return (

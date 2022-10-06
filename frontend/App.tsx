@@ -22,6 +22,7 @@ import HeaderRight from './Components/reuse/headerRight';
 import NFTAssets from './Components/NFT/NFTAssets';
 import HorseDetail from './Components/RaceDetail/HorseDetail';
 import BetConfirm from './Components/RaceDetail/BetConfirm';
+import MyAccount from './Components/MyAccount/MyAccount';
 
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {
@@ -40,20 +41,22 @@ LogBox.ignoreAllLogs();
 function Home(): JSX.Element {
   return (
     <Stack.Navigator
-    // screenOptions={{
-    //   headerShown: true,
-    // }}
-    // shifting={false}
-    // activeColor="#315399"
-    // inactiveColor="#3e2465"
-    // barStyle={{backgroundColor: 'white'}}
+      screenOptions={{
+        headerShown: false,
+      }}
+      // shifting={false}
+      // activeColor="#315399"
+      // inactiveColor="#3e2465"
+      // barStyle={{backgroundColor: 'white'}}
     >
       <Stack.Screen
         name="Assets"
-        options={{
-          headerRight: props => <HeaderRight />,
-          headerTitle: props => <Header />,
-        }}
+        // options={{
+        //   headerRight: props => <HeaderRight />,
+        //   headerTitle: props => <Header />,
+
+        // }}
+
         // options={{
         //   tabBarLabel: 'Assets',
         //   tabBarIcon: ({color, focused}) => {
@@ -63,11 +66,41 @@ function Home(): JSX.Element {
         component={Assets}
       />
       <Stack.Screen
+        name="HorseDetail"
+        // options={{
+        //   headerLeft: props => <HeaderLeft />,
+        //   headerTitle: props => <HeaderAfter />,
+        //   headerRight: props => <HeaderRight />,
+        // }}
+        // options={{header: props => <Header />}}
+        // options={{
+        //   tabBarLabel: 'HorseDetail',
+        //   tabBarIcon: ({color}) => (
+        //     <FontAwesomeIcon icon={faUser} color={color} size={20} />
+        //   ),
+        // }}
+        component={HorseDetail}
+      />
+      <Stack.Screen
+        name="BetConfirm"
+        // options={{
+        //   headerLeft: props => <HeaderLeft />
+        // }}
+        // options={{header: props => <Header />}}
+        // options={{
+        //   tabBarLabel: 'HorseDetail',
+        //   tabBarIcon: ({color}) => (
+        //     <FontAwesomeIcon icon={faUser} color={color} size={20} />
+        //   ),
+        // }}
+        component={BetConfirm}
+      />
+      <Stack.Screen
         name="Transactions"
-        options={{
-          headerLeft: props => <HeaderLeft />,
-          headerRight: props => <HeaderRight />,
-        }}
+        // options={{
+        //   headerLeft: props => <HeaderLeft />,
+        //   headerRight: props => <HeaderRight />,
+        // }}
         // options={{header: props => <Header />}}
         // options={{
         //   tabBarLabel: 'Transactions',
@@ -79,10 +112,10 @@ function Home(): JSX.Element {
       />
       <Stack.Screen
         name="NFTAssets"
-        options={{
-          headerLeft: props => <HeaderLeft />,
-          headerRight: props => <HeaderRight />,
-        }}
+        // options={{
+        //   headerLeft: props => <HeaderLeft />,
+        //   headerRight: props => <HeaderRight />,
+        // }}
         // options={{header: props => <Header />}}
         // options={{
         //   tabBarLabel: 'NFTAssets',
@@ -94,11 +127,11 @@ function Home(): JSX.Element {
       />
       <Stack.Screen
         name="Transfer"
-        options={{
-          headerLeft: props => <HeaderLeft />,
-          headerTitle: props => <HeaderAfter />,
-          headerRight: props => <HeaderRight />,
-        }}
+        // options={{
+        //   headerLeft: props => <HeaderLeft />,
+        //   headerTitle: props => <HeaderAfter />,
+        //   headerRight: props => <HeaderRight />,
+        // }}
         // options={{header: props => <Header />}}
         // options={{
         //   tabBarLabel: 'Transfer',
@@ -111,11 +144,11 @@ function Home(): JSX.Element {
 
       <Stack.Screen
         name="Profile"
-        options={{
-          headerLeft: props => <HeaderLeft />,
-          headerTitle: props => <HeaderAfter />,
-          headerRight: props => <HeaderRight />,
-        }}
+        // options={{
+        //   headerLeft: props => <HeaderLeft />,
+        //   headerTitle: props => <HeaderAfter />,
+        //   headerRight: props => <HeaderRight />,
+        // }}
         // options={{header: props => <Header />}}
         // options={{
         //   tabBarLabel: 'Profile',
@@ -125,35 +158,22 @@ function Home(): JSX.Element {
         // }}
         component={Profile}
       />
+
       <Stack.Screen
-        name="HorseDetail"
-        options={{
-          headerLeft: props => <HeaderLeft />,
-          headerTitle: props => <HeaderAfter />,
-          headerRight: props => <HeaderRight />,
-        }}
+        name="MyAccount"
+        // options={{
+        //   headerLeft: props => <HeaderLeft />,
+        //   headerTitle: props => <HeaderAfter />,
+        //   headerRight: props => <HeaderRight />,
+        // }}
         // options={{header: props => <Header />}}
         // options={{
-        //   tabBarLabel: 'HorseDetail',
+        //   tabBarLabel: 'Profile',
         //   tabBarIcon: ({color}) => (
         //     <FontAwesomeIcon icon={faUser} color={color} size={20} />
         //   ),
         // }}
-        component={HorseDetail}
-      />
-      <Stack.Screen
-        name="BetConfirm"
-        options={{
-          headerLeft: props => <HeaderLeft />
-        }}
-        // options={{header: props => <Header />}}
-        // options={{
-        //   tabBarLabel: 'HorseDetail',
-        //   tabBarIcon: ({color}) => (
-        //     <FontAwesomeIcon icon={faUser} color={color} size={20} />
-        //   ),
-        // }}
-        component={BetConfirm}
+        component={MyAccount}
       />
     </Stack.Navigator>
   );
@@ -161,27 +181,6 @@ function Home(): JSX.Element {
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
-function getHeaderTitle(route) {
-  // If the focused route is not found, we need to assume it's the initial screen
-  // This can happen during if there hasn't been any navigation inside the screen
-  // In our case, it's "Feed" as that's the first screen inside the navigator
-  const routeName = getFocusedRouteNameFromRoute(route) ?? 'Feed';
-
-  switch (routeName) {
-    case 'Assets':
-      return 'Assets';
-    case 'Transfer':
-      return 'Transfer';
-    case 'Transactions':
-      return 'Transactions';
-    case 'Profile':
-      return 'Profile';
-    case 'HorseDetail':
-      return 'HorseDetail';
-    case 'BetConfirm':
-      return 'BetConfirm';
-  }
-}
 
 const MyTheme = {
   ...DefaultTheme,
@@ -217,12 +216,17 @@ function App(): JSX.Element {
           name="DrawerNavigationRoutes"
           component={Home}
           // Hiding header for Navigation Drawer
-          // options={{headerTitle: props => <Header />}}
-          options={{headerShown: false}}
+          options={{
+            headerLeft: props => <HeaderLeft />,
+            headerTitle: props => <HeaderAfter />,
+            headerRight: props => <HeaderRight />,
+          }}
+          // options={{headerShown: false}}
           // options={({ route }) => ({
           //   headerTitle: getHeaderTitle(route),
           // })}
         />
+        
       </Stack.Navigator>
     </NavigationContainer>
   );

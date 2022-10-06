@@ -4,6 +4,7 @@ import {StyleSheet, View, Image, Text, TouchableOpacity} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {faCaretDown} from '@fortawesome/free-solid-svg-icons';
 import ChipBet from '../reuse/ChipBet';
+import {useNavigation} from '@react-navigation/native';
 
 const horseList = [
   {
@@ -179,6 +180,9 @@ const round = [
 ];
 
 function Umaren() {
+
+  const navigation = useNavigation();
+
   const [id, setId] = useState(4);
 
   const setIdFilter = id => {
@@ -214,8 +218,7 @@ function Umaren() {
               {round.map(e => (
                 <TouchableOpacity
                   style={[styles.borderChip]}
-                  onPress={() => setIdFilterR(e.id)}
-                  >
+                  onPress={() => setIdFilterR(e.id)}>
                   <Image
                     source={e.image}
                     style={[
@@ -235,8 +238,8 @@ function Umaren() {
                         height: 46,
                         borderRadius: 135,
                         backgroundColor: 'rgba(0, 20, 30, 0.5)',
-                        marginTop: -46  ,
-                        marginLeft: -13
+                        marginTop: -46,
+                        marginLeft: -13,
                       },
                       idR === e.id && {
                         backgroundColor: null,
@@ -284,12 +287,15 @@ function Umaren() {
               <View style={styles.btnBorder}>
                 <Image source={require('../Image/clear.png')} />
               </View>
-              <View style={styles.btnBorder}>
-                <Image
-                  source={require('../Image/bet.png')}
-                  style={{marginLeft: -8}}
-                />
-              </View>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('BetConfirm', {umaren: horseList})}>
+                <View style={styles.btnBorder}>
+                  <Image
+                    source={require('../Image/bet.png')}
+                    style={{marginLeft: -8}}
+                  />
+                </View>
+              </TouchableOpacity>
             </View>
           </View>
         </LinearGradient>

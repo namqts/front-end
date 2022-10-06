@@ -16,8 +16,10 @@ import {
 import RaceList from './RaceList';
 import LinearGradient from 'react-native-linear-gradient';
 import {LinearTextGradient} from 'react-native-text-gradient';
+import {useNavigation} from '@react-navigation/native';
 
 export default class Race extends Component {
+
   render() {
     return (
       <LinearGradient
