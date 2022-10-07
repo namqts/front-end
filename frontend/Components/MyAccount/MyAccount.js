@@ -16,6 +16,8 @@ import AcceptWallet from '../reuse/AcceptWallet';
 import Transfer from '../RaceDetail/Transfer';
 import Deposit from './Deposit';
 import RBSheet from 'react-native-raw-bottom-sheet';
+import FilterPay from './FilterPay';
+import FilterRace from '../reuse/FilterRace';
 
 const listTab = [
   {
@@ -152,29 +154,44 @@ export default function MyAccount(props) {
         closeOnDragDown={true}
         closeOnPressMask={true}
         dragFromTopOnly={true}
-        height={600}
+        height={610}
         customStyles={{
           container: {
             borderTopLeftRadius: 32,
             borderTopRightRadius: 32,
             backgroundColor: 'rgba(0, 20, 31, 0.98)',
-            
           },
           wrapper: {
             backgroundColor: 'transparent',
           },
           draggableIcon: {
-            backgroundColor: '#BDBDBD',
+            backgroundColor: 'rgba(223, 230, 233, 0.25)',
             width: 134,
           },
         }}>
-          
+        <FilterRace />
       </RBSheet>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  layout: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    padding: 0,
+    width: 396,
+    height: 336,
+  },
+  menu: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    padding: (0, 16),
+    width: 428,
+    height: 415,
+  },
   withdraw: {
     display: 'flex',
     flexDirection: 'row',

@@ -182,6 +182,7 @@ export default function RaceList() {
                 justifyContent: 'flex-start',
                 display: 'flex',
                 width: 80,
+                marginLeft: 10,
               }}>
               <Text style={styles.text}>Take bets</Text>
             </View>
@@ -192,7 +193,7 @@ export default function RaceList() {
                 alignItems: 'center',
                 justifyContent: 'flex-end',
                 display: 'flex',
-                width: 179,
+                width: 189,
               }}>
               <ImageBackground source={race.yard} style={styles.yard}>
                 <Text style={[styles.text, {fontSize: 12, lineHeight: 12}]}>
@@ -208,32 +209,39 @@ export default function RaceList() {
               </View>
             </View>
           </LinearGradient>
-
           <LinearGradient
             start={{x: 0.0, y: 0.0}}
             end={{x: 0.0, y: 1.0}}
             useAngle={true}
             angle={180}
-            locations={[0.0, 0.8787, 0.9054, 1.0]}
-            colors={['#353C3E', '#959796', '#13191D', '#555B61']}
-            style={styles.containerHorse}>
-            <View style={styles.name}>
-              <View style={styles.raceName}>
-                <View style={styles.raceCorse}>
-                  <Tokyo />
+            locations={[0.0, 0.1615, 0.3385, 0.474, 0.8542, 1.0]}
+            colors={['#FCFCFC', '#D0D0D0', '#F8F8F8', '#A4A4A4', '#5F5F5F', '#B3B3B3']}
+            style={styles.containerBorder}>
+            <LinearGradient
+              start={{x: 0.0, y: 0.0}}
+              end={{x: 0.0, y: 1.0}}
+              useAngle={true}
+              angle={180}
+              locations={[0.0, 0.8787, 0.9054, 1.0]}
+              colors={['#353C3E', '#959796', '#13191D', '#555B61']}
+              style={styles.containerHorse}>
+              <View style={styles.name}>
+                <View style={styles.raceName}>
+                  <View style={styles.raceCorse}>
+                    <Tokyo />
+                  </View>
+                  <Text style={[styles.text, {marginLeft: 8}]}>
+                    Karitekisuto race
+                  </Text>
                 </View>
-                <Text style={[styles.text, {marginLeft: 8}]}>
-                  Karitekisuto race
-                </Text>
+                <ClassRace />
               </View>
-              <ClassRace/>
-            </View>
-            <TouchableOpacity onPress={() => navigation.navigate('Transfer')}>
-              <View style={styles.btn}>
-                <Image source={require('../Image/button.png')} />
-              </View>
-            </TouchableOpacity>
-            {/* <Image source={race.imageG} />
+              <TouchableOpacity onPress={() => navigation.navigate('Transfer')}>
+                <View style={styles.btn}>
+                  <Image source={require('../Image/button.png')} />
+                </View>
+              </TouchableOpacity>
+              {/* <Image source={race.imageG} />
             <Text style={styles.raceTxt}>Karitekisuto race</Text>
             <TouchableOpacity onPress={() => navigation.navigate('Transfer')}>
               <LinearGradient
@@ -261,6 +269,7 @@ export default function RaceList() {
                 </LinearTextGradient>
               </LinearGradient>
             </TouchableOpacity> */}
+            </LinearGradient>
           </LinearGradient>
         </LinearGradient>
       ))}
@@ -344,17 +353,26 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   containerHorse: {
-    width: 356,
+    width: 376,
     height: 120,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'flex-end',
     padding: 4,
-    borderColor: 'rgba(19, 0, 0, 0.5)',
-    borderRadius: (0, 0, 7, 7),
-    elevation: 8,
-    borderWidth: 0.5,
+    borderBottomLeftRadius: 9,
+    borderBottomRightRadius: 9
+  },
+  containerBorder: {
+    width: 378,
+    height: 122,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    padding: 1,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10
   },
   time: {
     width: 71,
@@ -404,10 +422,10 @@ const styles = StyleSheet.create({
   },
   containerRace: {
     marginTop: 2,
-    marginLeft: 8,
-    marginRight: 8,
+    marginLeft: 4,
+    marginRight: 4,
     marginBottom: 40,
-    width: 357,
+    width: 376,
     height: 120,
     flexDirection: 'column',
     display: 'flex',

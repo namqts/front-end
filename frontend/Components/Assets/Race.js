@@ -1,6 +1,6 @@
 import {ListItem} from '@ui-kitten/components';
 import {Size} from '@ui-kitten/components/devsupport';
-import React, {Component, PureComponent, useState} from 'react';
+import React, {Component, PureComponent, useRef, useState} from 'react';
 import {
   StyleSheet,
   View,
@@ -17,11 +17,22 @@ import RaceList from './RaceList';
 import LinearGradient from 'react-native-linear-gradient';
 import {LinearTextGradient} from 'react-native-text-gradient';
 import {useNavigation} from '@react-navigation/native';
+import RBSheet from 'react-native-raw-bottom-sheet';
+import Filter from './Filter';
+import History from './History';
+import HistoryCard from './HistoryCard';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faExclamationCircle} from '@fortawesome/free-solid-svg-icons';
 
-export default class Race extends Component {
+export default function Race() {
+  const refRBSheet = useRef();
 
-  render() {
-    return (
+  const navigation = useNavigation();
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <>
       <LinearGradient
         start={{x: 0.0, y: 0.0}}
         end={{x: 0.0, y: 1.0}}
@@ -66,34 +77,130 @@ export default class Race extends Component {
             <View style={styles.rowContent}>
               <Image
                 source={require('../Image/label-card.png')}
-                style={{height: 46}}
+                style={{marginLeft: 3}}
               />
-              <LinearGradient
-                start={{x: 0.0, y: 0.0}}
-                end={{x: 0.0, y: 1.0}}
-                useAngle={true}
-                angle={180}
-                locations={[0.0, 0.758, 0.7847, 1.0]}
-                angleCenter={{x: 0.5, y: 0.5}}
-                colors={['#373F4F', '#8690A4', '#13161D', '#5D667A']}
-                style={styles.containerButton}>
-                <TouchableOpacity>
-                  <Image source={require('../Image/history.png')} />
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <Image source={require('../Image/filter.png')} />
-                </TouchableOpacity>
-              </LinearGradient>
+              {!isOpen ? (
+                <LinearGradient
+                  start={{x: 0.0, y: 0.0}}
+                  end={{x: 0.0, y: 1.0}}
+                  useAngle={true}
+                  angle={180}
+                  locations={[0.0, 0.758, 0.7847, 1.0]}
+                  angleCenter={{x: 0.5, y: 0.5}}
+                  colors={['#373F4F', '#8690A4', '#13161D', '#5D667A']}
+                  style={styles.containerButton}>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate('History')}>
+                    <Image source={require('../Image/history.png')} />
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => refRBSheet.current.open()}>
+                    <Image source={require('../Image/filter.png')} />
+                  </TouchableOpacity>
+                </LinearGradient>
+              ) : null}
             </View>
-            <RaceList />
+            {!isOpen ? (
+              <RaceList />
+            ) : (
+              <View style={styles.containerHistory}>
+                <View style={styles.containerNote}>
+                  <FontAwesomeIcon
+                    icon={faExclamationCircle}
+                    color="#8E8E8E"
+                    size={32}
+                  />
+                  <Text style={styles.txtNote}>
+                    The race list has not been updated, you can see the previous
+                    races
+                  </Text>
+                </View>
+                <HistoryCard />
+              </View>
+            )}
           </LinearGradient>
         </LinearGradient>
       </LinearGradient>
-    );
-  }
+      <RBSheet
+        ref={refRBSheet}
+        closeOnDragDown={true}
+        closeOnPressMask={true}
+        dragFromTopOnly={true}
+        height={610}
+        customStyles={{
+          container: {
+            borderTopLeftRadius: 32,
+            borderTopRightRadius: 32,
+            backgroundColor: 'rgba(0, 20, 31, 0.98)',
+          },
+          wrapper: {
+            backgroundColor: 'transparent',
+          },
+          draggableIcon: {
+            backgroundColor: 'rgba(223, 230, 233, 0.25)',
+            width: 134,
+          },
+        }}>
+        <View style={styles.menu}>
+          <View style={styles.layout}>
+            <Filter />
+            <TouchableOpacity onPress={() => refRBSheet.current.close()}>
+              <Image
+                source={require('../Image/btnAccept.png')}
+                style={{width: 394, height: 43, marginLeft: -4, marginTop: 20}}
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
+      </RBSheet>
+    </>
+  );
 }
 
 const styles = StyleSheet.create({
+  txtNote: {
+    fontFamily: 'Inter',
+    fontStyle: 'normal',
+    fontWeight: '300',
+    fontSize: 14,
+    lineHeight: 16,
+    textAlign: 'center',
+    width: 300,
+    height: 32,
+    color: '#8E8E8E',
+    marginTop: 11,
+  },
+  containerNote: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    paddingTop: 10,
+    width: 378,
+    height: 72,
+  },
+  containerHistory: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    padding: 0,
+    margin: 2,
+  },
+  layout: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    padding: 0,
+    width: 396,
+    height: 336,
+  },
+  menu: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    padding: (0, 16),
+    width: 428,
+    height: 415,
+  },
   containerButton: {
     display: 'flex',
     flexDirection: 'row',
@@ -101,6 +208,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     width: 189,
     height: 49,
+    marginLeft: 50,
     padding: (7, 5, 4),
     borderRadius: (0, 0, 4, 4),
   },
@@ -123,7 +231,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'space-between',
     padding: 0,
-    width: 364,
+    width: 380,
     height: 56,
   },
   txtCome: {
@@ -166,8 +274,8 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'flex-start',
     paddingTop: 16,
-    paddingLeft: 8,
-    paddingRight: 8,
+    paddingLeft: 6,
+    paddingRight: 4,
     width: 412,
     height: 1860,
     borderTopLeftRadius: 8,
@@ -180,9 +288,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'flex-start',
-    paddingLeft: 8,
-    paddingRight: 8,
-    width: 396,
+    paddingLeft: 5,
+    width: 399,
     height: 1860,
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
@@ -203,7 +310,7 @@ const styles = StyleSheet.create({
     paddingBottom: 0,
     paddingLeft: 4,
     paddingRight: 4,
-    width: 380,
+    width: 389,
     height: 1840,
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,

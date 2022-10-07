@@ -23,6 +23,8 @@ import NFTAssets from './Components/NFT/NFTAssets';
 import HorseDetail from './Components/RaceDetail/HorseDetail';
 import BetConfirm from './Components/RaceDetail/BetConfirm';
 import MyAccount from './Components/MyAccount/MyAccount';
+import History from './Components/Assets/History';
+import HistoryHorse from './Components/Assets/HistoryHorse';
 
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {
@@ -37,6 +39,44 @@ import Moralis from 'moralis/types';
 
 LogBox.ignoreAllLogs();
 
+const data = [
+  {
+    id: 1,
+    name: 'Assets',
+    component: Assets,
+  },
+  {
+    id: 2,
+    name: 'HorseDetail',
+    component: HorseDetail,
+  },
+  {
+    id: 3,
+    name: 'Transfer',
+    component: Transfer,
+  },
+  {
+    id: 4,
+    name: 'MyAccount',
+    component: MyAccount,
+  },
+  {
+    id: 5,
+    name: 'BetConfirm',
+    component: BetConfirm,
+  },
+  {
+    id: 6,
+    name: 'History',
+    component: History,
+  },
+  {
+    id: 7,
+    name: 'HistoryHorse',
+    component: HistoryHorse,
+  },
+];
+
 // const Activecolor =
 function Home(): JSX.Element {
   return (
@@ -49,132 +89,31 @@ function Home(): JSX.Element {
       // inactiveColor="#3e2465"
       // barStyle={{backgroundColor: 'white'}}
     >
-      <Stack.Screen
-        name="Assets"
-        // options={{
-        //   headerRight: props => <HeaderRight />,
-        //   headerTitle: props => <Header />,
-
-        // }}
-
-        // options={{
-        //   tabBarLabel: 'Assets',
-        //   tabBarIcon: ({color, focused}) => {
-        //     return <FontAwesomeIcon icon={faCoins} color={color} size={20} />;
-        //   },
-        // }}
-        component={Assets}
-      />
-      <Stack.Screen
-        name="HorseDetail"
-        // options={{
-        //   headerLeft: props => <HeaderLeft />,
-        //   headerTitle: props => <HeaderAfter />,
-        //   headerRight: props => <HeaderRight />,
-        // }}
-        // options={{header: props => <Header />}}
-        // options={{
-        //   tabBarLabel: 'HorseDetail',
-        //   tabBarIcon: ({color}) => (
-        //     <FontAwesomeIcon icon={faUser} color={color} size={20} />
-        //   ),
-        // }}
-        component={HorseDetail}
-      />
-      <Stack.Screen
-        name="BetConfirm"
-        // options={{
-        //   headerLeft: props => <HeaderLeft />
-        // }}
-        // options={{header: props => <Header />}}
-        // options={{
-        //   tabBarLabel: 'HorseDetail',
-        //   tabBarIcon: ({color}) => (
-        //     <FontAwesomeIcon icon={faUser} color={color} size={20} />
-        //   ),
-        // }}
-        component={BetConfirm}
-      />
-      <Stack.Screen
-        name="Transactions"
-        // options={{
-        //   headerLeft: props => <HeaderLeft />,
-        //   headerRight: props => <HeaderRight />,
-        // }}
-        // options={{header: props => <Header />}}
-        // options={{
-        //   tabBarLabel: 'Transactions',
-        //   tabBarIcon: ({color}) => (
-        //     <FontAwesomeIcon icon={faCreditCard} color={color} size={20} />
-        //   ),
-        // }}
-        component={RecentTransactions}
-      />
-      <Stack.Screen
-        name="NFTAssets"
-        // options={{
-        //   headerLeft: props => <HeaderLeft />,
-        //   headerRight: props => <HeaderRight />,
-        // }}
-        // options={{header: props => <Header />}}
-        // options={{
-        //   tabBarLabel: 'NFTAssets',
-        //   tabBarIcon: ({color, focused}) => {
-        //     return <FontAwesomeIcon icon={faRocket} color={color} size={20} />;
-        //   },
-        // }}
-        component={NFTAssets}
-      />
-      <Stack.Screen
-        name="Transfer"
-        // options={{
-        //   headerLeft: props => <HeaderLeft />,
-        //   headerTitle: props => <HeaderAfter />,
-        //   headerRight: props => <HeaderRight />,
-        // }}
-        // options={{header: props => <Header />}}
-        // options={{
-        //   tabBarLabel: 'Transfer',
-        //   tabBarIcon: ({color}) => (
-        //     <FontAwesomeIcon icon={faPaperPlane} color={color} size={20} />
-        //   ),
-        // }}
-        component={Transfer}
-      />
-
-      <Stack.Screen
-        name="Profile"
-        // options={{
-        //   headerLeft: props => <HeaderLeft />,
-        //   headerTitle: props => <HeaderAfter />,
-        //   headerRight: props => <HeaderRight />,
-        // }}
-        // options={{header: props => <Header />}}
-        // options={{
-        //   tabBarLabel: 'Profile',
-        //   tabBarIcon: ({color}) => (
-        //     <FontAwesomeIcon icon={faUser} color={color} size={20} />
-        //   ),
-        // }}
-        component={Profile}
-      />
-
-      <Stack.Screen
-        name="MyAccount"
-        // options={{
-        //   headerLeft: props => <HeaderLeft />,
-        //   headerTitle: props => <HeaderAfter />,
-        //   headerRight: props => <HeaderRight />,
-        // }}
-        // options={{header: props => <Header />}}
-        // options={{
-        //   tabBarLabel: 'Profile',
-        //   tabBarIcon: ({color}) => (
-        //     <FontAwesomeIcon icon={faUser} color={color} size={20} />
-        //   ),
-        // }}
-        component={MyAccount}
-      />
+      {data.map((e, i) => (
+        <Stack.Screen
+          key={i}
+          name={e.name}
+          // options={
+          //   e.name !== 'Assets'
+          //     ? {
+          //         headerLeft: props => <HeaderLeft />,
+          //         headerTitle: props => <HeaderAfter />,
+          //         headerRight: props => <HeaderRight />,
+          //       }
+          //     : {
+          //         headerTitle: props => <Header />,
+          //         headerRight: props => <HeaderRight />,
+          //       }
+          // }
+          // options={{
+          //   tabBarLabel: 'Assets',
+          //   tabBarIcon: ({color, focused}) => {
+          //     return <FontAwesomeIcon icon={faCoins} color={color} size={20} />;
+          //   },
+          // }}
+          component={e.component}
+        />
+      ))}
     </Stack.Navigator>
   );
 }
@@ -209,9 +148,10 @@ function App(): JSX.Element {
         {/* <Stack.Screen
           name="Auth"
           component={CryptoAuth}
-          options={{ headerShown: false }}
+          options={{headerShown: false}}
         /> */}
         {/* Navigation Drawer as a landing page */}
+
         <Stack.Screen
           name="DrawerNavigationRoutes"
           component={Home}
@@ -221,12 +161,12 @@ function App(): JSX.Element {
             headerTitle: props => <HeaderAfter />,
             headerRight: props => <HeaderRight />,
           }}
+
           // options={{headerShown: false}}
           // options={({ route }) => ({
           //   headerTitle: getHeaderTitle(route),
           // })}
         />
-        
       </Stack.Navigator>
     </NavigationContainer>
   );
