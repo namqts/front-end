@@ -16,6 +16,10 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		F4D62D86A4D5056D3485F939 /* libPods-EthereumRNBoilerplate-EthereumRNBoilerplateTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC5926C1D11799DF1BE43876 /* libPods-EthereumRNBoilerplate-EthereumRNBoilerplateTests.a */; };
 		076231AE5EBD4EE8AD2B942F /* Inter.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05C90315A3C245DD9A4D2805 /* Inter.ttf */; };
+		FA255F49AC7D4BF5BC78E116 /* Digital.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EBF2D71016724EDEB1ED9A77 /* Digital.ttf */; };
+		246719176D5F437086911042 /* Inter.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 12637DAF334D4CCFA8DAEDD8 /* Inter.ttf */; };
+		2761DE08DA014B00992D4F90 /* Kalam.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A466D91E811745C898A08FAA /* Kalam.ttf */; };
+		71DF8DE16AC248448643500E /* timer.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EBBB3591D17846CD9D9E5D68 /* timer.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +72,10 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FAB93B2017304EB9A3B012FE /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		05C90315A3C245DD9A4D2805 /* Inter.ttf */ = {isa = PBXFileReference; name = "Inter.ttf"; path = "../assets/fonts/Inter.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		EBF2D71016724EDEB1ED9A77 /* Digital.ttf */ = {isa = PBXFileReference; name = "Digital.ttf"; path = "../Assets/fonts/Digital.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		12637DAF334D4CCFA8DAEDD8 /* Inter.ttf */ = {isa = PBXFileReference; name = "Inter.ttf"; path = "../Assets/fonts/Inter.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A466D91E811745C898A08FAA /* Kalam.ttf */ = {isa = PBXFileReference; name = "Kalam.ttf"; path = "../Assets/fonts/Kalam.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		EBBB3591D17846CD9D9E5D68 /* timer.ttf */ = {isa = PBXFileReference; name = "timer.ttf"; path = "../Assets/fonts/timer.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +207,10 @@
 				FAB93B2017304EB9A3B012FE /* SimpleLineIcons.ttf */,
 				3F086896701E44CC9103306C /* Zocial.ttf */,
 				05C90315A3C245DD9A4D2805 /* Inter.ttf */,
+				EBF2D71016724EDEB1ED9A77 /* Digital.ttf */,
+				12637DAF334D4CCFA8DAEDD8 /* Inter.ttf */,
+				A466D91E811745C898A08FAA /* Kalam.ttf */,
+				EBBB3591D17846CD9D9E5D68 /* timer.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -298,6 +310,10 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				076231AE5EBD4EE8AD2B942F /* Inter.ttf in Resources */,
+				FA255F49AC7D4BF5BC78E116 /* Digital.ttf in Resources */,
+				246719176D5F437086911042 /* Inter.ttf in Resources */,
+				2761DE08DA014B00992D4F90 /* Kalam.ttf in Resources */,
+				71DF8DE16AC248448643500E /* timer.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

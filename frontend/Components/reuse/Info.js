@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     padding: 0,
     width: 210,
     height: 24,
-    marginRight: 16,
+    marginRight: 20,
   },
   txtDes: {
     display: 'flex',

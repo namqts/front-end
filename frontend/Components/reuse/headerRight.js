@@ -1,6 +1,6 @@
 import {border, position} from 'native-base/lib/typescript/theme/styled-system';
 import React, {useRef} from 'react';
-import {View, StyleSheet, Image, Text, TouchableOpacity } from 'react-native';
+import {View, StyleSheet, Image, Text, TouchableOpacity} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import {useNavigation} from '@react-navigation/native';
@@ -11,41 +11,40 @@ function HeaderRight() {
 
   return (
     <>
-      <TouchableOpacity onPress={() => refRBSheet.current.open()}>
-        <LinearGradient
-          start={{x: 0.0, y: 0.0}}
-          end={{x: 0.0, y: 1.0}}
-          useAngle={true}
-          angle={180}
-          locations={[0.0, 0.1615, 0.6426, 0.6927, 0.9615, 1.0]}
-          angleCenter={{x: 0.5, y: 0.5}}
-          colors={[
-            '#F8F8F8',
-            '#B5B4B4',
-            '#F1F1F1',
-            '#504F4F',
-            '#A7A7A7',
-            '#D0D0D0',
-          ]}
-          style={styles.frameRight}>
-          <View>
-            <Image source={require('../Image/menu.png')} />
-          </View>
-        </LinearGradient>
-      </TouchableOpacity>
+      <LinearGradient
+        start={{x: 0.0, y: 0.0}}
+        end={{x: 0.0, y: 1.0}}
+        useAngle={true}
+        angle={180}
+        locations={[0.0, 0.1615, 0.6426, 0.6927, 0.9615, 1.0]}
+        angleCenter={{x: 0.5, y: 0.5}}
+        colors={[
+          '#F8F8F8',
+          '#B5B4B4',
+          '#F1F1F1',
+          '#504F4F',
+          '#A7A7A7',
+          '#D0D0D0',
+        ]}
+        style={styles.frameRight}>
+        <TouchableOpacity onPress={() => refRBSheet.current.open()}>
+          <Image source={require('../Image/menu.png')} />
+        </TouchableOpacity>
+      </LinearGradient>
       <RBSheet
         ref={refRBSheet}
         closeOnDragDown={true}
         closeOnPressMask={true}
         dragFromTopOnly={true}
-        height={500}
+        height={610}
         customStyles={{
           container: {
             borderTopLeftRadius: 32,
             borderTopRightRadius: 32,
+            backgroundColor: 'rgba(0, 20, 30, 0.95)',
           },
           wrapper: {
-            backgroundColor: 'transparent',
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
           },
           draggableIcon: {
             backgroundColor: '#BDBDBD',
@@ -54,35 +53,69 @@ function HeaderRight() {
         }}>
         <View style={styles.menu}>
           <View style={styles.containerIcon}>
-            <TouchableOpacity onPress={() => [navigation.navigate('MyAccount'),  refRBSheet.current.close()]}>
+            <TouchableOpacity
+              onPress={() => [
+                navigation.navigate('MyAccount'),
+                refRBSheet.current.close(),
+              ]}>
               <View style={styles.container}>
-                <View style={styles.icon}></View>
-                <Text>My account</Text>
+                <Image
+                  source={require('../Image/menu/my-account.png')}
+                  style={{width: 70, height: 85}}
+                />
+                <Text style={styles.text}>My account</Text>
               </View>
             </TouchableOpacity>
-            <View style={styles.container}>
-              <View style={styles.icon}></View>
-              <Text>News</Text>
-            </View>
+            <TouchableOpacity
+              onPress={() => [
+                navigation.navigate('News'),
+                refRBSheet.current.close(),
+              ]}>
+              <View style={styles.container}>
+                <Image
+                  source={require('../Image/menu/new.png')}
+                  style={{width: 70, height: 85}}
+                />
+                <Text style={styles.text}>News</Text>
+              </View>
+            </TouchableOpacity>
           </View>
           <View style={styles.containerIcon}>
             <View style={styles.container}>
-              <View style={styles.icon}></View>
-              <Text>Bet history</Text>
+              <Image
+                source={require('../Image/menu/history.png')}
+                style={{width: 70, height: 85}}
+              />
+              <Text style={styles.text}>Bet history</Text>
             </View>
-            <View style={styles.container}>
-              <View style={styles.icon}></View>
-              <Text>Withdraw</Text>
-            </View>
+            <TouchableOpacity
+              onPress={() => [
+                navigation.navigate('WithDraw'),
+                refRBSheet.current.close(),
+              ]}>
+              <View style={styles.container}>
+                <Image
+                  source={require('../Image/menu/withdraw.png')}
+                  style={{width: 70, height: 85}}
+                />
+                <Text style={styles.text}>Withdraw</Text>
+              </View>
+            </TouchableOpacity>
           </View>
           <View style={styles.containerIcon}>
             <View style={styles.container}>
-              <View style={styles.icon}></View>
-              <Text>System</Text>
+              <Image
+                source={require('../Image/menu/setting.png')}
+                style={{width: 70, height: 85}}
+              />
+              <Text style={styles.text}>System</Text>
             </View>
             <View style={styles.container}>
-              <View style={styles.icon}></View>
-              <Text>Support</Text>
+              <Image
+                source={require('../Image/menu/support.png')}
+                style={{width: 70, height: 85}}
+              />
+              <Text style={styles.text}>Support</Text>
             </View>
           </View>
         </View>
@@ -94,6 +127,14 @@ function HeaderRight() {
 export default HeaderRight;
 
 const styles = StyleSheet.create({
+  text: {
+    fontFamily: 'Inter',
+    fontStyle: 'normal',
+    fontWeight: '600',
+    fontSize: 18,
+    lineHeight: 22,
+    color: '#FFFFFF',
+  },
   container: {
     display: 'flex',
     flexDirection: 'column',
@@ -102,20 +143,13 @@ const styles = StyleSheet.create({
     width: 150,
     height: 150,
   },
-  icon: {
-    borderColor: '#212121',
-    borderWidth: 1,
-    borderRadius: 100,
-    width: 100,
-    height: 100,
-  },
   containerIcon: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     width: 300,
     height: 100,
-    marginBottom: 60,
+    marginBottom: 30,
   },
   menu: {
     display: 'flex',
@@ -125,6 +159,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     width: 428,
     height: 450,
+    marginTop: 40,
   },
   frameRight: {
     display: 'flex',

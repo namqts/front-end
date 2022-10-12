@@ -1,4 +1,7 @@
-import { useNavigation } from '@react-navigation/native';
+import {faAddressBook} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {useNavigation} from '@react-navigation/native';
+import {Box, Icon, NativeBaseProvider, Slider} from 'native-base';
 import React, {useRef} from 'react';
 import {
   Image,
@@ -150,7 +153,8 @@ export default function HistoryCard() {
         </TouchableOpacity>
       </View>
       {data.map(e => (
-        <TouchableOpacity onPress={() => navigation.navigate('HistoryHorse', {data: e})}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('HistoryHorse', {data: e})}>
           <LinearGradient
             start={{x: 0.0, y: 0.0}}
             end={{x: 0.0, y: 1.0}}
@@ -244,20 +248,64 @@ export default function HistoryCard() {
             backgroundColor: 'rgba(0, 20, 31, 0.98)',
           },
           wrapper: {
-            backgroundColor: 'transparent',
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
           },
           draggableIcon: {
             backgroundColor: 'rgba(223, 230, 233, 0.25)',
             width: 134,
           },
         }}>
-        <FilterRace data="1" />
+        <NativeBaseProvider>
+          <View style={styles.menu}>
+            <View style={styles.layout}>
+              <FilterRace />
+              <Box mx={5} style={{width: 348, height: 24}}>
+                <Slider minValue={20} maxValue={70} size="lg" colorScheme="orange">
+                  <Slider.Track bg="orange.100">
+                    <Slider.FilledTrack bg="#0AB0BB" />
+                  </Slider.Track>
+                  <Slider.Thumb borderRadius={99} width={0}>
+                    <Image
+                      source={require('../Image/volume.png')}
+                      style={{marginTop: 30}}
+                    />
+                  </Slider.Thumb>
+                </Slider>
+              </Box>
+
+              <TouchableOpacity
+                onPress={() => refRBSheet.current.close()}
+                style={{marginTop: 41}}>
+                <Image
+                  source={require('../Image/btnAccept.png')}
+                  style={{width: 394, height: 43, marginLeft: -4}}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
+        </NativeBaseProvider>
       </RBSheet>
     </>
   );
 }
 
 const styles = StyleSheet.create({
+  layout: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    padding: 0,
+    width: 396,
+    height: 336,
+  },
+  menu: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    padding: (0, 16),
+    width: 428,
+    height: 415,
+  },
   prize: {
     display: 'flex',
     flexDirection: 'row',

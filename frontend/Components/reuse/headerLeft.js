@@ -8,21 +8,19 @@ function HeaderLeft() {
   const navigation = useNavigation();
 
   return (
-    <TouchableOpacity onPress={navigation.goBack}>
-      <LinearGradient
-        start={{x: 0.0, y: 0.0}}
-        end={{x: 0.0, y: 1.0}}
-        useAngle={true}
-        angle={180}
-        locations={[0.0, 0.6279, 0.6868, 1.0]}
-        angleCenter={{x: 0.5, y: 0.5}}
-        colors={['#616B80', '#3A4459', '#2C3649', '#2B354A']}
-        style={styles.frameLeft}>
-        <View>
-          <Image source={require('../Image/back.png')} />
-        </View>
-      </LinearGradient>
-    </TouchableOpacity>
+    <LinearGradient
+      start={{x: 0.0, y: 0.0}}
+      end={{x: 0.0, y: 1.0}}
+      useAngle={true}
+      angle={180}
+      locations={[0.0, 0.6279, 0.6868, 1.0]}
+      angleCenter={{x: 0.5, y: 0.5}}
+      colors={['#616B80', '#3A4459', '#2C3649', '#2B354A']}
+      style={styles.frameLeft}>
+      <TouchableOpacity onPress={navigation.goBack}>
+        <Image source={require('../Image/back.png')} />
+      </TouchableOpacity>
+    </LinearGradient>
   );
 }
 
@@ -41,6 +39,6 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 50,
     borderColor: '#6E6E6E',
     borderWidth: 0.5,
-    marginTop: 20
+    marginTop: 20,
   },
 });

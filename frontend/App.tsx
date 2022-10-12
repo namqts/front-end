@@ -25,6 +25,9 @@ import BetConfirm from './Components/RaceDetail/BetConfirm';
 import MyAccount from './Components/MyAccount/MyAccount';
 import History from './Components/Assets/History';
 import HistoryHorse from './Components/Assets/HistoryHorse';
+import News from './Components/News/news'
+import BettingNew from './Components/News/BettingNew'
+import WithDraw from './Components/withdraw/withdraw'
 
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {
@@ -74,6 +77,21 @@ const data = [
     id: 7,
     name: 'HistoryHorse',
     component: HistoryHorse,
+  },
+  {
+    id: 8,
+    name: 'News',
+    component: News,
+  },
+  {
+    id: 9,
+    name: 'BettingNew',
+    component: BettingNew,
+  },
+  {
+    id: 10,
+    name: 'WithDraw',
+    component: WithDraw,
   },
 ];
 

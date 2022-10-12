@@ -133,7 +133,7 @@ export default function Race() {
             backgroundColor: 'rgba(0, 20, 31, 0.98)',
           },
           wrapper: {
-            backgroundColor: 'transparent',
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
           },
           draggableIcon: {
             backgroundColor: 'rgba(223, 230, 233, 0.25)',

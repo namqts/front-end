@@ -56,6 +56,9 @@
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
 		<string>Inter.ttf</string>
+		<string>Digital.ttf</string>
+		<string>Kalam.ttf</string>
+		<string>timer.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

@@ -1,6 +1,6 @@
 import {ListItem} from '@ui-kitten/components';
 import {Size} from '@ui-kitten/components/devsupport';
-import React, {Component, PureComponent, useState} from 'react';
+import React, {Component, PureComponent, useEffect, useState} from 'react';
 import {
   StyleSheet,
   View,
@@ -18,6 +18,8 @@ import {LinearTextGradient} from 'react-native-text-gradient';
 import {useNavigation} from '@react-navigation/native';
 import Tokyo from '../reuse/tokyo';
 import ClassRace from '../reuse/classRace';
+import GradientSilver from '../reuse/GradientSilver';
+import CountDown from 'react-native-countdown-component';
 
 const races = [
   {
@@ -134,7 +136,7 @@ export default function RaceList() {
   const navigation = useNavigation();
 
   return (
-    <View style={{marginTop: 6}}>
+    <View>
       {races.map((race, i) => (
         <LinearGradient
           start={{x: 0.0, y: 0.0}}
@@ -193,20 +195,29 @@ export default function RaceList() {
                 alignItems: 'center',
                 justifyContent: 'flex-end',
                 display: 'flex',
-                width: 189,
+                width: 191,
               }}>
               <ImageBackground source={race.yard} style={styles.yard}>
                 <Text style={[styles.text, {fontSize: 12, lineHeight: 12}]}>
                   {race.m}
                 </Text>
               </ImageBackground>
-              <View style={styles.time}>
+              <GradientSilver style={styles.time}>
                 <ImageBackground
-                  source={require('../Image/time.png')}
-                  style={styles.time}>
-                  <Text></Text>
+                  source={require('../Image/countdown.png')}
+                  style={styles.count}>
+                  <CountDown
+                    size={7}
+                    until={16}
+                    digitTxtStyle={styles.timeStyle}
+                    digitStyle={{backgroundColor: 'transparent', height: 25}}
+                    separatorStyle={styles.timeStyle}
+                    timeToShow={['H', 'M', 'S']}
+                    timeLabels={{h: null, m: null, s: null}}
+                    showSeparator
+                  />
                 </ImageBackground>
-              </View>
+              </GradientSilver>
             </View>
           </LinearGradient>
           <LinearGradient
@@ -215,7 +226,14 @@ export default function RaceList() {
             useAngle={true}
             angle={180}
             locations={[0.0, 0.1615, 0.3385, 0.474, 0.8542, 1.0]}
-            colors={['#FCFCFC', '#D0D0D0', '#F8F8F8', '#A4A4A4', '#5F5F5F', '#B3B3B3']}
+            colors={[
+              '#FCFCFC',
+              '#D0D0D0',
+              '#F8F8F8',
+              '#A4A4A4',
+              '#5F5F5F',
+              '#B3B3B3',
+            ]}
             style={styles.containerBorder}>
             <LinearGradient
               start={{x: 0.0, y: 0.0}}
@@ -225,50 +243,27 @@ export default function RaceList() {
               locations={[0.0, 0.8787, 0.9054, 1.0]}
               colors={['#353C3E', '#959796', '#13191D', '#555B61']}
               style={styles.containerHorse}>
-              <View style={styles.name}>
-                <View style={styles.raceName}>
-                  <View style={styles.raceCorse}>
-                    <Tokyo />
+              <ImageBackground
+                source={require('../Image/gif/led.gif')}
+                style={styles.containerHorse}>
+                <View style={styles.name}>
+                  <View style={styles.raceName}>
+                    <View style={styles.raceCorse}>
+                      <Tokyo />
+                    </View>
+                    <Text style={[styles.text, {marginLeft: 8}]}>
+                      Karitekisuto race
+                    </Text>
                   </View>
-                  <Text style={[styles.text, {marginLeft: 8}]}>
-                    Karitekisuto race
-                  </Text>
+                  <ClassRace />
                 </View>
-                <ClassRace />
-              </View>
-              <TouchableOpacity onPress={() => navigation.navigate('Transfer')}>
-                <View style={styles.btn}>
-                  <Image source={require('../Image/button.png')} />
-                </View>
-              </TouchableOpacity>
-              {/* <Image source={race.imageG} />
-            <Text style={styles.raceTxt}>Karitekisuto race</Text>
-            <TouchableOpacity onPress={() => navigation.navigate('Transfer')}>
-              <LinearGradient
-                start={{x: 0.0, y: 0.0}}
-                end={{x: 0.0, y: 1.0}}
-                useAngle={true}
-                angle={360}
-                locations={[0.0, 0.4479, 0.4792, 1.0]}
-                colors={['#EDC53A', '#B26F29', '#FFF873', '#DD9A09']}
-                style={styles.betting}>
-                <LinearTextGradient
-                  style={styles.txtBetting}
-                  locations={[-0.0937, 0.0259, 0.2196, 0.7323, 0.8576, 1]}
-                  colors={[
-                    '#FFAE00',
-                    '#FED943',
-                    '#FFF39F',
-                    '#FFF39F',
-                    '#F5D23E',
-                    '#FFAE00',
-                  ]}
-                  start={{x: 0, y: 0}}
-                  end={{x: 0, y: 1}}>
-                  <Text>Detail {'&'} betting</Text>
-                </LinearTextGradient>
-              </LinearGradient>
-            </TouchableOpacity> */}
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('Transfer')}>
+                  <View style={styles.btn}>
+                    <Image source={require('../Image/button.png')} />
+                  </View>
+                </TouchableOpacity>
+              </ImageBackground>
             </LinearGradient>
           </LinearGradient>
         </LinearGradient>
@@ -278,6 +273,15 @@ export default function RaceList() {
 }
 
 const styles = StyleSheet.create({
+  timeStyle: {
+    color: '#FFFFFF',
+    fontFamily: 'timer',
+    fontWeight: '600',
+    fontSize: 13,
+    lineHeight: 14,
+    fontStyle: 'normal',
+    letterSpacing: 0.02,
+  },
   btn: {
     display: 'flex',
     flexDirection: 'row',
@@ -361,7 +365,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     padding: 4,
     borderBottomLeftRadius: 9,
-    borderBottomRightRadius: 9
+    borderBottomRightRadius: 9,
   },
   containerBorder: {
     width: 378,
@@ -372,13 +376,18 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     padding: 1,
     borderBottomLeftRadius: 10,
-    borderBottomRightRadius: 10
+    borderBottomRightRadius: 10,
+  },
+  count: {
+    width: 70,
+    height: 22,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   time: {
-    width: 71,
-    height: 22,
+    width: 72,
+    height: 24,
     padding: 1,
-    backgroundColor: '#DCDCDC',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -399,6 +408,7 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
   },
   txtNumber: {
+    fontFamily: 'Inter',
     fontStyle: 'italic',
     fontSize: 16,
     lineHeight: 26,
